@@ -1,22 +1,17 @@
-import React, {
-  DragEventHandler,
-  LegacyRef,
-  MutableRefObject,
-  SyntheticEvent,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { LegacyRef, useEffect, useRef, useState } from "react";
+import { SparklesIcon } from "@heroicons/react/24/outline";
 import { DraggableData, Rnd, RndDragEvent } from "react-rnd";
 
 export default function Draggable({
-  startX = 600,
+  startX = 300,
   startY = 300,
   children,
+  title,
 }: {
   startX?: number;
   startY?: number;
   children: React.ReactNode;
+  title: React.ReactNode;
 }) {
   const dragRef = useRef<LegacyRef<Rnd>>();
   const [position, setPosition] = useState({
@@ -29,7 +24,8 @@ export default function Draggable({
   useEffect(() => {
     const resizer = () => {
       const windowMinusElement =
-        window.innerWidth - dragRef.current.resizable.state.width;
+        //@ts-ignore
+        window.innerWidth - dragRef.current?.resizable.state.width;
       setPosition((prev) => {
         return {
           ...prev,
@@ -57,6 +53,7 @@ export default function Draggable({
       enableResizing={false}
       onDragStop={onDragStop}
       position={position}
+      dragHandleClassName={"handle"}
       default={{
         x: 0,
         y: 0,
@@ -64,10 +61,13 @@ export default function Draggable({
         width: "",
       }}
     >
-      <div className="bg-slate-600 rounded-tl rounded-tr">
-        <span className="handle absolute right-5 top-2 cursor-grab inline-block active:cursor-grabbing">
-          Drag
-        </span>
+      <div className="shadow">
+        <div className="p-2 bg-slate-600 shadow-b-lg shadow-black rounded-tl rounded-tr">
+          <span className="handle absolute right-2 top-2 cursor-grab inline-block active:cursor-grabbing">
+            <SparklesIcon className="h-6" />
+          </span>
+          {title}
+        </div>
         {children}
       </div>
     </Rnd>

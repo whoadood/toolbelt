@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  input[type="number"] {
+    -moz-appearance: textfield !important;
+    -moz-appearance: none !important;
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none !important;
+    -moz-appearance: textfield !important;
+    margin: 0;
+  }
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -moz-appearance: textfield !important;
+  margin: 0;
+}
+
+/* .custom-number-input input:focus {
+  outline: none !important;
+}
+
+.custom-number-input button:focus {
+  outline: none !important;
+} */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
