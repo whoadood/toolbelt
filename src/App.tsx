@@ -20,8 +20,8 @@ function App() {
   const todoRef = useRef<string>("");
 
   return (
-    <div className="min-h-screen flex justify-end px-2 relative">
-      <header>
+    <div className="min-h-screen flex bg-emerald-400 text-white font-bold justify-end px-2 relative">
+      <header className="shadow-lg">
         <h2>hello</h2>
       </header>
       <div className="absolute top-6 right-0 left-0 bottom-0 bg-slate-700 text-white font-bold">

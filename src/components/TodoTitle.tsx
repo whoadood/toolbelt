@@ -50,7 +50,16 @@ export default function TodoTitle({
         <form
           className="flex flex-no-wrap"
           onSubmit={handleSubmit}
-          onKeyDown={(e) => e.code === "Enter" && handleSubmit(e)}
+          onKeyDown={(e) => {
+            if (e.code === "Enter") {
+              handleSubmit(e);
+            }
+            if (e.code === "Escape") {
+              console.log("key code", e.code);
+              reset();
+              setInputTodo(false);
+            }
+          }}
         >
           <input
             autoComplete="off"
@@ -64,7 +73,7 @@ export default function TodoTitle({
             <button
               type="button"
               data-action="decrement"
-              className=" bg-slate-800 text-gray-600 hover:text-white hover:bg-slate-900 h-full w-10 rounded-l cursor-pointer outline-none"
+              className=" bg-slate-800 hover:text-white text-gray-600 hover:bg-slate-900 h-full w-10 rounded-l z-10 cursor-pointer"
               onClick={() => setRounds(rounds - 1 > 0 ? rounds - 1 : 1)}
             >
               <span className="m-auto text-2xl font-bold">−</span>
@@ -87,7 +96,10 @@ export default function TodoTitle({
           </div>
         </form>
       ) : (
-        <button onClick={(e) => setInputTodo(true)}>
+        <button
+          className="hover:bg-slate-700/50 transition-colors duration-150 rounded-full p-2"
+          onClick={(e) => setInputTodo(true)}
+        >
           <PlusIcon className="h-6" />
         </button>
       )}
