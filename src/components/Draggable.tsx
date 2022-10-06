@@ -3,8 +3,8 @@ import { SparklesIcon } from "@heroicons/react/24/outline";
 import { DraggableData, Rnd, RndDragEvent } from "react-rnd";
 
 export default function Draggable({
-  startX = 300,
-  startY = 300,
+  startX = 350,
+  startY = 10,
   children,
   title,
 }: {

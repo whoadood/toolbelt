@@ -1,5 +1,10 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
-import React, { useCallback, useState } from "react";
+import React, {
+  LegacyRef,
+  MutableRefObject,
+  useCallback,
+  useState,
+} from "react";
 
 export default function TodoTitle({
   inputTodo,
@@ -18,13 +23,12 @@ export default function TodoTitle({
       }[]
     >
   >;
-  todoRef: React.MutableRefObject<string>;
+  todoRef: MutableRefObject<HTMLInputElement>;
   setInputTodo: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [rounds, setRounds] = useState(1);
   const reset = useCallback(() => {
     setInputTodo(false);
-    todoRef.current = "";
     setRounds(1);
   }, []);
 
@@ -34,13 +38,14 @@ export default function TodoTitle({
       return [
         ...prev,
         {
-          text: todoRef.current,
+          text: todoRef?.current.value,
           currentRound: 0,
           complete: false,
           totalRounds: rounds,
         },
       ];
     });
+
     reset();
   };
 
@@ -55,7 +60,6 @@ export default function TodoTitle({
               handleSubmit(e);
             }
             if (e.code === "Escape") {
-              console.log("key code", e.code);
               reset();
               setInputTodo(false);
             }
@@ -67,7 +71,7 @@ export default function TodoTitle({
             name="text"
             className="bg-slate-800 outline-none w-64 rounded font-normal py-1 px-2 focus:outline-white"
             type="text"
-            onChange={(e) => (todoRef.current = e.target.value)}
+            ref={todoRef as MutableRefObject<HTMLInputElement>}
           />
           <div className="flex hover:outline-white flex-row h-10 w-full rounded mr-10 ml-1">
             <button
