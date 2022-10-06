@@ -17,7 +17,7 @@ function App() {
 
   const [inputTodo, setInputTodo] = useState(false);
 
-  const todoRef = useRef<MutableRefObject<HTMLInputElement>>();
+  const todoRef = useRef<MutableRefObject<HTMLInputElement | undefined>>();
 
   return (
     <div className="min-h-screen flex bg-gradient-to-r from-teal-500 via-indigo-500 to-purple-500 text-gray-100 font-bold justify-end px-2 relative">
@@ -25,11 +25,17 @@ function App() {
         <span className="drop-shadow-2xl">hello</span>
       </header>
       <div className="absolute top-6 right-0 left-0 bottom-0 bg-slate-700 text-white font-bold">
+        <Draggable title={<div>pomodoro</div>}>
+          <div className="bg-slate-800 flex flex-col gap-2 rounded-b min-w-[400px] p-2 min-h-[150px]">
+            pomo
+          </div>
+        </Draggable>
         <Draggable
+          startY={210}
           title={
             <TodoTitle
               inputTodo={inputTodo}
-              todoRef={todoRef}
+              todoRef={todoRef as MutableRefObject<HTMLInputElement>}
               setInputTodo={setInputTodo}
               setTodos={setTodos}
             />

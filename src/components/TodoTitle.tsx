@@ -73,7 +73,7 @@ export default function TodoTitle({
             type="text"
             ref={todoRef as MutableRefObject<HTMLInputElement>}
           />
-          <div className="flex hover:outline-white flex-row h-10 w-full rounded mr-10 ml-1">
+          <div className="flex flex-row h-10 w-full rounded mr-10 ml-1">
             <button
               type="button"
               data-action="decrement"
@@ -83,12 +83,15 @@ export default function TodoTitle({
               <span className="m-auto text-2xl font-bold">−</span>
             </button>
             <input
-              type="number"
-              className="outline-none focus:outline-none text-center p-0 w-full bg-slate-800 appearance-none font-semibold text-md md:text-base cursor-default flex items-center outline-none"
+              type="hidden"
+              className="outline-none focus:outline-none text-center p-0 w-full bg-slate-800 appearance-none font-semibold text-md md:text-base cursor-default flex items-center"
               name="custom-input-number"
               value={rounds}
               readOnly
             />
+            <div className="outline-none focus:outline-none text-center px-1/2  bg-slate-800 appearance-none font-semibold text-md md:text-base cursor-default flex justify-center items-center">
+              {rounds}
+            </div>
             <button
               data-action="increment"
               type="button"
