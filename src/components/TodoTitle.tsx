@@ -1,10 +1,5 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
-import React, {
-  LegacyRef,
-  MutableRefObject,
-  useCallback,
-  useState,
-} from "react";
+import React, { MutableRefObject, useCallback, useState } from "react";
 
 export default function TodoTitle({
   inputTodo,
@@ -73,11 +68,11 @@ export default function TodoTitle({
             type="text"
             ref={todoRef as MutableRefObject<HTMLInputElement>}
           />
-          <div className="flex flex-row h-10 w-full rounded mr-10 ml-1">
+          <div className="flex flex-row h-10 w-full rounded ml-2">
             <button
               type="button"
               data-action="decrement"
-              className=" bg-slate-800 hover:text-white text-gray-600 hover:bg-slate-900 h-full w-10 rounded-l z-10 cursor-pointer"
+              className=" bg-slate-800 hover:text-white text-gray-600 hover:bg-slate-900 h-full w-6 rounded-l z-10 cursor-pointer"
               onClick={() => setRounds(rounds - 1 > 0 ? rounds - 1 : 1)}
             >
               <span className="m-auto text-2xl font-bold">−</span>
@@ -89,13 +84,13 @@ export default function TodoTitle({
               value={rounds}
               readOnly
             />
-            <div className="outline-none focus:outline-none text-center px-1/2  bg-slate-800 appearance-none font-semibold text-md md:text-base cursor-default flex justify-center items-center">
+            <div className="outline-none focus:outline-none text-center px-1/2 w-6 bg-slate-800 appearance-none font-semibold text-md md:text-base cursor-default flex justify-center items-center">
               {rounds}
             </div>
             <button
               data-action="increment"
               type="button"
-              className="bg-slate-800 hover:text-white text-gray-600 hover:bg-slate-900 h-full w-10 rounded-r cursor-pointer"
+              className="bg-slate-800 hover:text-white text-gray-600  hover:bg-slate-900 h-full w-6 rounded-r cursor-pointer"
               onClick={() => setRounds(rounds + 1)}
             >
               <span className="m-auto text-2xl font-bold">+</span>
