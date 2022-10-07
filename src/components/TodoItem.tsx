@@ -1,9 +1,9 @@
 import { CheckCircleIcon, TrashIcon } from "@heroicons/react/24/outline";
 import React from "react";
+import { useTodos } from "../hooks/useTodos";
 
 export default function TodoItem({
   todo,
-  setTodos,
 }: {
   todo: {
     text: string;
@@ -11,17 +11,8 @@ export default function TodoItem({
     complete: boolean;
     totalRounds: number;
   };
-  setTodos: React.Dispatch<
-    React.SetStateAction<
-      {
-        text: string;
-        currentRound: number;
-        complete: boolean;
-        totalRounds: number;
-      }[]
-    >
-  >;
 }) {
+  const { todosDispatch } = useTodos();
   return (
     <div
       className={`${
@@ -39,25 +30,7 @@ export default function TodoItem({
         <label
           htmlFor={todo.text}
           onClick={() => {
-            setTodos((prev) => {
-              const newTodos = prev.map((td) => {
-                if (td.text === todo.text) {
-                  if (td.complete) {
-                    return { ...td, complete: false, currentRound: 0 };
-                  }
-                  if (td.currentRound === td.totalRounds - 1) {
-                    return {
-                      ...td,
-                      complete: !td.complete,
-                      currentRound: td.totalRounds,
-                    };
-                  }
-                  return { ...td, currentRound: td.currentRound + 1 };
-                }
-                return td;
-              });
-              return newTodos;
-            });
+            todosDispatch({ type: "COMPLETE_TODO", value: todo.text });
           }}
           className={`${
             todo.complete ? "text-green-700" : "text-gray-200/20"
@@ -76,9 +49,7 @@ export default function TodoItem({
         <button
           className="hover:bg-slate-700/50 transition-colors duration-150 p-2 rounded-full"
           onClick={() => {
-            setTodos((prev) => {
-              return prev.filter((td) => td.text !== todo.text);
-            });
+            todosDispatch({ type: "DELETE_TODO", value: todo.text });
           }}
         >
           {<TrashIcon className="h-6" />}

@@ -6,16 +6,11 @@ import TodoTitle from "./components/TodoTitle";
 import SpotifyTitle from "./components/SpotifyTitle";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import useToggle from "./hooks/useToggle";
+import { useTodos } from "./hooks/useTodos";
 
 function App() {
-  const [todos, setTodos] = useState<
-    {
-      text: string;
-      currentRound: number;
-      complete: boolean;
-      totalRounds: number;
-    }[]
-  >([]);
+  const { todos, todosDispatch } = useTodos();
+
   const [spotifyActive, setSpotifyActive] = useState(
     "https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator&theme=0"
   );
@@ -41,15 +36,14 @@ function App() {
           title={
             <TodoTitle
               toggle={toggle}
-              todoRef={todoRef as MutableRefObject<HTMLInputElement>}
+              todoRef={todoRef}
               handleToggle={handleToggle}
-              setTodos={setTodos}
             />
           }
         >
           <div className="bg-slate-800 flex flex-col gap-2 rounded-b min-w-[400px] p-2 min-h-[150px]">
             {todos.map((todo) => (
-              <TodoItem key={todo.text} todo={todo} setTodos={setTodos} />
+              <TodoItem key={todo.text} todo={todo} />
             ))}
           </div>
         </Draggable>
