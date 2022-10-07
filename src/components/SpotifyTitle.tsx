@@ -1,6 +1,6 @@
 import { useSpotify } from "../hooks/useSpotify";
 
-const SpotifyTitle = ({}) => {
+const SpotifyTitle = () => {
   const { spotifyActive, loadPlaylist } = useSpotify();
   return (
     <>

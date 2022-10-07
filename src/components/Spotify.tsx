@@ -1,13 +1,15 @@
-import React, { LegacyRef, useCallback, useRef } from "react";
+import React, { MutableRefObject, useCallback, useRef } from "react";
 import { useSpotify } from "../hooks/useSpotify";
 
 export default function Spotify() {
-  const searchRef = useRef<React.MutableRefObject<HTMLInputElement>>();
+  const searchRef = useRef<HTMLInputElement>();
   const { spotifyActive, loadPlaylist } = useSpotify();
 
   const submit = useCallback((e: React.KeyboardEvent<HTMLFormElement>) => {
     e.preventDefault();
-    loadPlaylist(searchRef?.current?.value);
+    loadPlaylist(
+      (searchRef as MutableRefObject<HTMLInputElement>).current.value
+    );
   }, []);
 
   return (
@@ -31,8 +33,8 @@ export default function Spotify() {
           onSubmit={submit}
         >
           <input
-            ref={searchRef}
-            className="bg-slate-800 w-full outline-none w-64 rounded font-normal py-1 px-2 focus:outline-white"
+            ref={searchRef as MutableRefObject<HTMLInputElement>}
+            className="bg-slate-800 w-full outline-none rounded font-normal py-1 px-2 focus:outline-white"
             placeholder="Enter a Spotify playlist URL"
           />
         </form>

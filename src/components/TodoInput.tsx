@@ -1,4 +1,4 @@
-import React, { MutableRefObject } from "react";
+import { MutableRefObject } from "react";
 
 export default function TodoInput({
   todoRef,

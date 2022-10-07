@@ -1,19 +1,27 @@
-import { createContext, Reducer, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import { Todo } from "../types/global";
 
 const TodoContext = createContext<
   | {
       todos: Todo[];
-      todosDispatch: React.Dispatch<ReducerAction>;
+      todosDispatch: React.Dispatch<REDUCER_ACTION_TYPE>;
     }
   | undefined
 >(undefined);
 
 type REDUCER_ACTION_TYPE =
-  | "ADD_TODO"
-  | "COMPLETE_TODO"
-  | "DELETE_TODO"
-  | "RESET_TODO";
+  | {
+      type: "ADD_TODO";
+      value: Todo;
+    }
+  | {
+      type: "COMPLETE_TODO" | "DELETE_TODO";
+      value: string;
+    }
+  | {
+      type: "RESET_TODOS";
+      value: undefined;
+    };
 
 type ReducerAction = {
   type: REDUCER_ACTION_TYPE;
@@ -22,22 +30,12 @@ type ReducerAction = {
 
 const initialTodos: Todo[] = [];
 
-const ACTION_TYPE = {
-  ADD_TODO: "ADD_TODO",
-  COMPLETE_TODO: "COMPLETE_TODO",
-  DELETE_TODO: "DELETE_TODO",
-  RESET_TODOS: "RESET_TODOS",
-};
-
 const TodoProvider = ({ children }: { children: React.ReactNode }) => {
-  const todoReducer: Reducer<Todo[], ReducerAction> = (
-    state = initialTodos,
-    action
-  ) => {
+  const todoReducer = (state = initialTodos, action: REDUCER_ACTION_TYPE) => {
     switch (action.type) {
-      case ACTION_TYPE.ADD_TODO:
+      case "ADD_TODO":
         return [...state, action.value];
-      case ACTION_TYPE.COMPLETE_TODO:
+      case "COMPLETE_TODO":
         return state.map((td) => {
           if (td.text === action.value) {
             if (td.complete) {
@@ -54,9 +52,9 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
           }
           return td;
         });
-      case ACTION_TYPE.DELETE_TODO:
+      case "DELETE_TODO":
         return state.filter((td) => td.text !== action.value);
-      case ACTION_TYPE.RESET_TODOS:
+      case "RESET_TODOS":
         return initialTodos;
       default:
         return initialTodos;

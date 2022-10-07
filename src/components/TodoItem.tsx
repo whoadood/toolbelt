@@ -1,5 +1,4 @@
 import { CheckCircleIcon, TrashIcon } from "@heroicons/react/24/outline";
-import React from "react";
 import { useTodos } from "../hooks/useTodos";
 import { Todo } from "../types/global";
 
