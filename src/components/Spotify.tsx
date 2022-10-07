@@ -1,36 +1,44 @@
-export default function Spotify() {
+import React, { LegacyRef, useCallback, useRef } from "react";
+
+export default function Spotify({
+  spotifyActive,
+  setSpotifyActive,
+}: {
+  spotifyActive: string;
+  setSpotifyActive: React.Dispatch<React.SetStateAction<string>>;
+}) {
+  const searchRef = useRef<React.MutableRefObject<HTMLInputElement>>();
+  const submit = useCallback((e: React.KeyboardEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("search ref", searchRef?.current?.value);
+    setSpotifyActive(searchRef?.current.value);
+  }, []);
   return (
     <div>
-      {/* <div className="p-2 bg-slate-600 rounded-tl rounded-tr">
-        {[
-          {
-            text: "hip-hop",
-            url: "https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator&theme=0",
-          },
-          {
-            text: "sleep/rain",
-            url: "https://open.spotify.com/embed/playlist/35xI4hSJ8MdO1xkXwsd56a?utm_source=generator",
-          },
-        ].map((playlist) => (
-          <button
-            className={`flex`}
-            key={playlist.text}
-          >
-            {playlist.text}
-          </button>
-        ))}
-      </div> */}
       <div className="max-w-[400px]">
         <iframe
-          className="rounded-bl rounded-br"
-          src={
-            "https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator&theme=0"
-          }
+          src={spotifyActive}
           width="100%"
           height="380"
           allow="autoplay; clipboard-write; encrypted-media; volume; fullscreen; picture-in-picture"
           loading="lazy"
         />
+      </div>
+      <div className="rounded-b px-2 py-2 bg-slate-600">
+        <form
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              submit(e);
+            }
+          }}
+          onSubmit={submit}
+        >
+          <input
+            ref={searchRef}
+            className="bg-slate-800 w-full outline-none w-64 rounded font-normal py-1 px-2 focus:outline-white"
+            placeholder="Enter a Spotify playlist URL"
+          />
+        </form>
       </div>
     </div>
   );

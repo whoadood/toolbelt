@@ -23,10 +23,10 @@ export default function TodoTitle({
   handleToggle: () => void;
 }) {
   const [rounds, setRounds] = useState(1);
-  const reset = useCallback(() => {
+  const reset = () => {
     handleToggle();
     setRounds(1);
-  }, []);
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,7 +41,6 @@ export default function TodoTitle({
         },
       ];
     });
-    handleToggle();
     reset();
   };
 

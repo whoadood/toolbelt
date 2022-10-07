@@ -16,7 +16,9 @@ function App() {
       totalRounds: number;
     }[]
   >([]);
-
+  const [spotifyActive, setSpotifyActive] = useState(
+    "https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator&theme=0"
+  );
   const { toggle, handleToggle } = useToggle();
 
   const todoRef = useRef<MutableRefObject<HTMLInputElement | undefined>>();
@@ -51,8 +53,19 @@ function App() {
             ))}
           </div>
         </Draggable>
-        <Draggable startX={760} title={<SpotifyTitle />}>
-          <Spotify />
+        <Draggable
+          startX={760}
+          title={
+            <SpotifyTitle
+              setSpotifyActive={setSpotifyActive}
+              spotifyActive={spotifyActive}
+            />
+          }
+        >
+          <Spotify
+            spotifyActive={spotifyActive}
+            setSpotifyActive={setSpotifyActive}
+          />
         </Draggable>
       </div>
     </div>
