@@ -5,6 +5,7 @@ import TodoItem from "./components/TodoItem";
 import TodoTitle from "./components/TodoTitle";
 import SpotifyTitle from "./components/SpotifyTitle";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import useToggle from "./hooks/useToggle";
 
 function App() {
   const [todos, setTodos] = useState<
@@ -16,14 +17,14 @@ function App() {
     }[]
   >([]);
 
-  const [inputTodo, setInputTodo] = useState(false);
+  const { toggle, handleToggle } = useToggle();
 
   const todoRef = useRef<MutableRefObject<HTMLInputElement | undefined>>();
 
   return (
     <div className="min-h-screen flex bg-gradient-to-r from-teal-500 via-indigo-500 to-purple-500 text-gray-100 font-bold justify-end px-2 relative">
       <header className="shadow-lg">
-        <button className="drop-shadow-2xl hover:text-white ease-in-out transition-colors duration-150 text-gray-400 flex items-center">
+        <button className="drop-shadow-2xl hover:text-white ease-in-out transition-colors duration-150 text-gray-300 flex items-center">
           <span>settings</span> <ChevronDownIcon className="h-4" />
         </button>
       </header>
@@ -37,9 +38,9 @@ function App() {
           startY={210}
           title={
             <TodoTitle
-              inputTodo={inputTodo}
+              toggle={toggle}
               todoRef={todoRef as MutableRefObject<HTMLInputElement>}
-              setInputTodo={setInputTodo}
+              handleToggle={handleToggle}
               setTodos={setTodos}
             />
           }

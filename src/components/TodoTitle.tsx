@@ -1,13 +1,14 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
 import React, { MutableRefObject, useCallback, useState } from "react";
+import TodoInput from "./TodoInput";
 
 export default function TodoTitle({
-  inputTodo,
+  toggle,
   setTodos,
   todoRef,
-  setInputTodo,
+  handleToggle,
 }: {
-  inputTodo: boolean;
+  toggle: boolean;
   setTodos: React.Dispatch<
     React.SetStateAction<
       {
@@ -19,11 +20,11 @@ export default function TodoTitle({
     >
   >;
   todoRef: MutableRefObject<HTMLInputElement>;
-  setInputTodo: React.Dispatch<React.SetStateAction<boolean>>;
+  handleToggle: () => void;
 }) {
   const [rounds, setRounds] = useState(1);
   const reset = useCallback(() => {
-    setInputTodo(false);
+    handleToggle();
     setRounds(1);
   }, []);
 
@@ -40,13 +41,13 @@ export default function TodoTitle({
         },
       ];
     });
-
+    handleToggle();
     reset();
   };
 
   return (
     <div>
-      {inputTodo ? (
+      {toggle ? (
         <form
           className="flex flex-no-wrap"
           onSubmit={handleSubmit}
@@ -56,51 +57,16 @@ export default function TodoTitle({
             }
             if (e.code === "Escape") {
               reset();
-              setInputTodo(false);
+              handleToggle();
             }
           }}
         >
-          <input
-            autoComplete="off"
-            autoFocus
-            name="text"
-            className="bg-slate-800 outline-none w-64 rounded font-normal py-1 px-2 focus:outline-white"
-            type="text"
-            ref={todoRef as MutableRefObject<HTMLInputElement>}
-          />
-          <div className="flex flex-row h-10 w-full rounded ml-2">
-            <button
-              type="button"
-              data-action="decrement"
-              className=" bg-slate-800 hover:text-white text-gray-600 hover:bg-slate-900 h-full w-6 rounded-l z-10 cursor-pointer"
-              onClick={() => setRounds(rounds - 1 > 0 ? rounds - 1 : 1)}
-            >
-              <span className="m-auto text-2xl font-bold">−</span>
-            </button>
-            <input
-              type="hidden"
-              className="outline-none focus:outline-none text-center p-0 w-full bg-slate-800 appearance-none font-semibold text-md md:text-base cursor-default flex items-center"
-              name="custom-input-number"
-              value={rounds}
-              readOnly
-            />
-            <div className="outline-none focus:outline-none text-center px-1/2 w-6 bg-slate-800 appearance-none font-semibold text-md md:text-base cursor-default flex justify-center items-center">
-              {rounds}
-            </div>
-            <button
-              data-action="increment"
-              type="button"
-              className="bg-slate-800 hover:text-white text-gray-600  hover:bg-slate-900 h-full w-6 rounded-r cursor-pointer"
-              onClick={() => setRounds(rounds + 1)}
-            >
-              <span className="m-auto text-2xl font-bold">+</span>
-            </button>
-          </div>
+          <TodoInput todoRef={todoRef} setRounds={setRounds} rounds={rounds} />
         </form>
       ) : (
         <button
           className="hover:bg-slate-700/50 transition-colors duration-150 rounded-full p-2"
-          onClick={(e) => setInputTodo(true)}
+          onClick={handleToggle}
         >
           <PlusIcon className="h-6" />
         </button>
