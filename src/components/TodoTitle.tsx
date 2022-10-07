@@ -1,29 +1,17 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
 import React, { MutableRefObject, useCallback, useState } from "react";
+import { useInputTodo } from "../hooks/useInputTodo";
 import { useTodos } from "../hooks/useTodos";
 import TodoInput from "./TodoInput";
 
 export default function TodoTitle({
-  toggle,
   todoRef,
-  handleToggle,
 }: {
-  toggle: boolean;
-  setTodos: React.Dispatch<
-    React.SetStateAction<
-      {
-        text: string;
-        currentRound: number;
-        complete: boolean;
-        totalRounds: number;
-      }[]
-    >
-  >;
   todoRef: MutableRefObject<HTMLInputElement>;
-  handleToggle: () => void;
 }) {
   const [rounds, setRounds] = useState(1);
   const { todosDispatch } = useTodos();
+  const { toggle: inputToggle, handleToggle } = useInputTodo();
   const reset = () => {
     handleToggle();
     setRounds(1);
@@ -45,7 +33,7 @@ export default function TodoTitle({
 
   return (
     <div>
-      {toggle ? (
+      {inputToggle ? (
         <form
           className="flex flex-no-wrap"
           onSubmit={handleSubmit}

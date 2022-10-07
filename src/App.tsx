@@ -9,12 +9,11 @@ import useToggle from "./hooks/useToggle";
 import { useTodos } from "./hooks/useTodos";
 
 function App() {
-  const { todos, todosDispatch } = useTodos();
+  const { todos } = useTodos();
 
   const [spotifyActive, setSpotifyActive] = useState(
     "https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator&theme=0"
   );
-  const { toggle, handleToggle } = useToggle();
 
   const todoRef = useRef<MutableRefObject<HTMLInputElement | undefined>>();
 
@@ -31,16 +30,7 @@ function App() {
             pomo
           </div>
         </Draggable>
-        <Draggable
-          startY={210}
-          title={
-            <TodoTitle
-              toggle={toggle}
-              todoRef={todoRef}
-              handleToggle={handleToggle}
-            />
-          }
-        >
+        <Draggable startY={210} title={<TodoTitle todoRef={todoRef} />}>
           <div className="bg-slate-800 flex flex-col gap-2 rounded-b min-w-[400px] p-2 min-h-[150px]">
             {todos.map((todo) => (
               <TodoItem key={todo.text} todo={todo} />
