@@ -1,4 +1,4 @@
-import { MutableRefObject, useRef, useState } from "react";
+import { MutableRefObject, useRef } from "react";
 import Spotify from "./components/Spotify";
 import Draggable from "./components/Draggable";
 import TodoItem from "./components/TodoItem";
@@ -10,6 +10,8 @@ import { useTodos } from "./hooks/useTodos";
 function App() {
   const { todos } = useTodos();
   const todoRef = useRef<MutableRefObject<HTMLInputElement | undefined>>();
+  const testRef = useRef(1);
+  console.log("test ref", testRef.current);
 
   return (
     <div className="min-h-screen flex bg-gradient-to-r from-teal-500 via-indigo-500 to-purple-500 text-gray-100 font-bold justify-end px-2 relative">

@@ -2,12 +2,14 @@ import React, { MutableRefObject } from "react";
 
 export default function TodoInput({
   todoRef,
-  setRounds,
   rounds,
+  addRound,
+  subRound,
 }: {
   todoRef: MutableRefObject<HTMLInputElement>;
-  setRounds: React.Dispatch<React.SetStateAction<number>>;
   rounds: number;
+  addRound: () => void;
+  subRound: () => void;
 }) {
   return (
     <>
@@ -24,7 +26,7 @@ export default function TodoInput({
           type="button"
           data-action="decrement"
           className=" bg-slate-800 hover:text-white text-gray-600 hover:bg-slate-900 h-full w-6 rounded-l z-10 cursor-pointer"
-          onClick={() => setRounds(rounds - 1 > 0 ? rounds - 1 : 1)}
+          onClick={subRound}
         >
           <span className="m-auto text-2xl font-bold">−</span>
         </button>
@@ -42,7 +44,7 @@ export default function TodoInput({
           data-action="increment"
           type="button"
           className="bg-slate-800 hover:text-white text-gray-600  hover:bg-slate-900 h-full w-6 rounded-r cursor-pointer"
-          onClick={() => setRounds(rounds + 1)}
+          onClick={addRound}
         >
           <span className="m-auto text-2xl font-bold">+</span>
         </button>

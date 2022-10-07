@@ -1,6 +1,7 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
-import React, { MutableRefObject, useCallback, useState } from "react";
+import React, { MutableRefObject, useRef, useState } from "react";
 import { useInputTodo } from "../hooks/useInputTodo";
+import useTodoRounds from "../hooks/useTodoRounds";
 import { useTodos } from "../hooks/useTodos";
 import TodoInput from "./TodoInput";
 
@@ -9,12 +10,13 @@ export default function TodoTitle({
 }: {
   todoRef: MutableRefObject<HTMLInputElement>;
 }) {
-  const [rounds, setRounds] = useState(1);
   const { todosDispatch } = useTodos();
   const { toggle: inputToggle, handleToggle } = useInputTodo();
+  const { rounds, addRound, subRound, resetRounds } = useTodoRounds();
+
   const reset = () => {
     handleToggle();
-    setRounds(1);
+    resetRounds();
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -47,7 +49,12 @@ export default function TodoTitle({
             }
           }}
         >
-          <TodoInput todoRef={todoRef} setRounds={setRounds} rounds={rounds} />
+          <TodoInput
+            todoRef={todoRef}
+            rounds={rounds}
+            addRound={addRound}
+            subRound={subRound}
+          />
         </form>
       ) : (
         <button
