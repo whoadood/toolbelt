@@ -1,17 +1,9 @@
 import { CheckCircleIcon, TrashIcon } from "@heroicons/react/24/outline";
 import React from "react";
 import { useTodos } from "../hooks/useTodos";
+import { Todo } from "../types/global";
 
-export default function TodoItem({
-  todo,
-}: {
-  todo: {
-    text: string;
-    currentRound: number;
-    complete: boolean;
-    totalRounds: number;
-  };
-}) {
+export default function TodoItem({ todo }: { todo: Todo }) {
   const { todosDispatch } = useTodos();
   return (
     <div
@@ -34,7 +26,7 @@ export default function TodoItem({
           }}
           className={`${
             todo.complete ? "text-green-700" : "text-gray-200/20"
-          }  flex items-center rounded-full active:text-green-700 cursor-pointer p-1 hover:bg-slate-700/50 transition-colors duration-150 rounded-full transition-colors duration-150`}
+          }  flex items-center active:text-green-700 cursor-pointer p-1 hover:bg-slate-700/50 rounded-full transition-colors duration-150`}
         >
           <CheckCircleIcon className="h-8" />
           <input

@@ -1,4 +1,5 @@
 import { createContext, Reducer, useContext, useReducer } from "react";
+import { Todo } from "../types/global";
 
 const TodoContext = createContext<
   | {
@@ -7,14 +8,6 @@ const TodoContext = createContext<
     }
   | undefined
 >(undefined);
-
-type Todo = {
-  id?: string;
-  text: string;
-  currentRound: number;
-  complete: boolean;
-  totalRounds: number;
-};
 
 type REDUCER_ACTION_TYPE =
   | "ADD_TODO"

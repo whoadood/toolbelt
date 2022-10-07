@@ -9,7 +9,6 @@ import { useTodos } from "./hooks/useTodos";
 
 function App() {
   const { todos } = useTodos();
-
   const todoRef = useRef<MutableRefObject<HTMLInputElement | undefined>>();
 
   return (

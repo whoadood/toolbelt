@@ -7,8 +7,7 @@ export default function Spotify() {
 
   const submit = useCallback((e: React.KeyboardEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // console.log("search ref", searchRef?.current?.value);
-    loadPlaylist(searchRef?.current?.value as string);
+    loadPlaylist(searchRef?.current?.value);
   }, []);
 
   return (
