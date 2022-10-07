@@ -1,19 +1,14 @@
-import { LegacyRef, MutableRefObject, useRef, useState } from "react";
+import { MutableRefObject, useRef, useState } from "react";
 import Spotify from "./components/Spotify";
 import Draggable from "./components/Draggable";
 import TodoItem from "./components/TodoItem";
 import TodoTitle from "./components/TodoTitle";
 import SpotifyTitle from "./components/SpotifyTitle";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import useToggle from "./hooks/useToggle";
 import { useTodos } from "./hooks/useTodos";
 
 function App() {
   const { todos } = useTodos();
-
-  const [spotifyActive, setSpotifyActive] = useState(
-    "https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator&theme=0"
-  );
 
   const todoRef = useRef<MutableRefObject<HTMLInputElement | undefined>>();
 
@@ -37,19 +32,8 @@ function App() {
             ))}
           </div>
         </Draggable>
-        <Draggable
-          startX={760}
-          title={
-            <SpotifyTitle
-              setSpotifyActive={setSpotifyActive}
-              spotifyActive={spotifyActive}
-            />
-          }
-        >
-          <Spotify
-            spotifyActive={spotifyActive}
-            setSpotifyActive={setSpotifyActive}
-          />
+        <Draggable startX={760} title={<SpotifyTitle />}>
+          <Spotify />
         </Draggable>
       </div>
     </div>

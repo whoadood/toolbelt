@@ -1,10 +1,7 @@
-const SpotifyTitle = ({
-  spotifyActive,
-  setSpotifyActive,
-}: {
-  spotifyActive: string;
-  setSpotifyActive: React.Dispatch<React.SetStateAction<string>>;
-}) => {
+import { useSpotify } from "../hooks/useSpotify";
+
+const SpotifyTitle = ({}) => {
+  const { spotifyActive, loadPlaylist } = useSpotify();
   return (
     <>
       {[
@@ -21,7 +18,7 @@ const SpotifyTitle = ({
           className={`flex  ${
             spotifyActive === playlist.url ? "text-white" : "text-gray-400"
           }`}
-          onClick={() => setSpotifyActive(playlist.url)}
+          onClick={() => loadPlaylist(playlist.url)}
           key={playlist.text}
         >
           {playlist.text}

@@ -1,18 +1,16 @@
 import React, { LegacyRef, useCallback, useRef } from "react";
+import { useSpotify } from "../hooks/useSpotify";
 
-export default function Spotify({
-  spotifyActive,
-  setSpotifyActive,
-}: {
-  spotifyActive: string;
-  setSpotifyActive: React.Dispatch<React.SetStateAction<string>>;
-}) {
+export default function Spotify() {
   const searchRef = useRef<React.MutableRefObject<HTMLInputElement>>();
+  const { spotifyActive, loadPlaylist } = useSpotify();
+
   const submit = useCallback((e: React.KeyboardEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("search ref", searchRef?.current?.value);
-    setSpotifyActive(searchRef?.current.value);
+    // console.log("search ref", searchRef?.current?.value);
+    loadPlaylist(searchRef?.current?.value as string);
   }, []);
+
   return (
     <div>
       <div className="max-w-[400px]">
