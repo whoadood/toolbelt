@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const UseTimer = (
   timerStarted: boolean,
@@ -6,6 +6,10 @@ const UseTimer = (
   taskCompletedCallback: () => void
 ) => {
   const [seconds, setSeconds] = useState(initialSeconds);
+
+  const resetSeconds = useCallback(() => {
+    setSeconds(initialSeconds);
+  }, [initialSeconds]);
 
   useEffect(() => {
     let time: number | undefined;
@@ -27,7 +31,7 @@ const UseTimer = (
     };
   }, [timerStarted, seconds, taskCompletedCallback]);
 
-  return [seconds, setSeconds];
+  return [seconds, resetSeconds];
 };
 
 export default UseTimer;
