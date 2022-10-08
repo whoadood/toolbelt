@@ -6,6 +6,7 @@ import TodoTitle from "./components/TodoTitle";
 import SpotifyTitle from "./components/SpotifyTitle";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useTodos } from "./hooks/useTodos";
+import Pomodoro from "./components/Pomodoro";
 
 function App() {
   const { todos } = useTodos();
@@ -20,9 +21,7 @@ function App() {
       </header>
       <div className="absolute top-6 right-0 left-0 bottom-0 bg-slate-700 text-white font-bold">
         <Draggable title={<div>pomodoro</div>}>
-          <div className="bg-slate-800 flex flex-col gap-2 rounded-b min-w-[400px] p-2 min-h-[150px]">
-            pomo
-          </div>
+          <Pomodoro />
         </Draggable>
         <Draggable
           startY={210}
