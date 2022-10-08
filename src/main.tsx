@@ -5,13 +5,16 @@ import "./index.css";
 import { TodoProvider } from "./hooks/useTodos";
 import { InputTodoProvider } from "./hooks/useInputTodo";
 import { SpotifyProvider } from "./hooks/useSpotify";
+import { PomodoroProvider } from "./hooks/usePomodoro";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <TodoProvider>
       <InputTodoProvider>
         <SpotifyProvider>
-          <App />
+          <PomodoroProvider>
+            <App />
+          </PomodoroProvider>
         </SpotifyProvider>
       </InputTodoProvider>
     </TodoProvider>
