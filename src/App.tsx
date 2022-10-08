@@ -7,9 +7,11 @@ import SpotifyTitle from "./components/SpotifyTitle";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useTodos } from "./hooks/useTodos";
 import Pomodoro from "./components/Pomodoro";
+import { usePomodoro } from "./hooks/usePomodoro";
 
 function App() {
   const { todos } = useTodos();
+  const { pomodoro } = usePomodoro();
   const todoRef = useRef<HTMLInputElement>();
 
   return (
@@ -20,7 +22,17 @@ function App() {
         </button>
       </header>
       <div className="absolute top-6 right-0 left-0 bottom-0 bg-slate-700 text-white font-bold">
-        <Draggable title={<div>pomodoro</div>}>
+        <Draggable
+          title={
+            <div>
+              {pomodoro.isBreak
+                ? pomodoro.breakCount > 3
+                  ? "Long Break"
+                  : "Short Break"
+                : "Pomodoro"}
+            </div>
+          }
+        >
           <Pomodoro />
         </Draggable>
         <Draggable

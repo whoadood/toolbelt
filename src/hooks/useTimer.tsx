@@ -9,7 +9,7 @@ const UseTimer = (
 
   const resetSeconds = useCallback(() => {
     setSeconds(initialSeconds);
-  }, [initialSeconds]);
+  }, [initialSeconds, timerStarted, taskCompletedCallback]);
 
   useEffect(() => {
     let time: number | undefined;
@@ -31,7 +31,7 @@ const UseTimer = (
     };
   }, [timerStarted, seconds, taskCompletedCallback]);
 
-  return [seconds, resetSeconds];
+  return { seconds, resetSeconds };
 };
 
 export default UseTimer;

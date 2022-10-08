@@ -1,10 +1,16 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
 import { usePomodoro } from "../hooks/usePomodoro";
-import useTimer from "../hooks/useTimer";
 
 export default function Pomodoro() {
-  const { pomodoro, pomodoroDispatch, minutes, formatSeconds } = usePomodoro();
+  const {
+    pomodoro,
+    pomodoroDispatch,
+    pomMinutes,
+    formatPomSeconds,
+    breakMinutes,
+    formatBreakSeconds,
+  } = usePomodoro();
 
+  console.log("break display", breakMinutes, formatBreakSeconds);
   return (
     <div className="bg-slate-800 flex flex-col gap-2 rounded-b min-w-[400px] p-2 min-h-[150px]">
       <h1
@@ -13,7 +19,12 @@ export default function Pomodoro() {
         } text-8xl mx-auto`}
       >
         <span>
-          {minutes}:{formatSeconds}
+          {pomodoro.hasStarted
+            ? /* {!pomodoro.hasStarted && `${pomMinutes}:${formatPomSeconds}`} */
+              pomodoro.isBreak
+              ? `${breakMinutes}:${formatBreakSeconds}`
+              : `${pomMinutes}:${formatPomSeconds}`
+            : `${pomMinutes}:${formatBreakSeconds}`}
         </span>
       </h1>
       <div className="flex justify-around items-center">
