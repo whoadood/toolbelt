@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useReducer,
-} from "react";
+import { createContext, useContext, useReducer } from "react";
 import { Pomodoro } from "../types/global";
 import useTimer from "./useTimer";
 
@@ -80,7 +74,7 @@ const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
     initialPomodoro
   );
 
-  const { seconds, setSeconds, resetTimer } = useTimer(
+  const { seconds, resetTimer } = useTimer(
     pomodoro as Pomodoro,
     () => {
       console.log("task complete callback");

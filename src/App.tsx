@@ -22,7 +22,7 @@ function App() {
           <span>settings</span> <ChevronDownIcon className="h-4" />
         </button>
       </header>
-      <div className="absolute top-6 right-0 left-0 bottom-0 bg-slate-700 text-white font-bold">
+      <div className="absolute top-6 right-0 left-0 bottom-0 bg-[url('/lofigirl.gif')] bg-center bg-cover text-white font-bold ">
         <Draggable
           title={
             <div>
@@ -44,7 +44,7 @@ function App() {
             />
           }
         >
-          <div className="bg-slate-800 flex flex-col gap-2 rounded-b min-w-[400px] p-2 min-h-[150px]">
+          <div className="flex flex-col gap-2 rounded-b min-w-[400px] p-2 min-h-[150px]">
             {todos.map((todo) => (
               <TodoItem key={todo.text} todo={todo} />
             ))}

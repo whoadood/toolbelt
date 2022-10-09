@@ -3,7 +3,7 @@ import { usePomodoro } from "../hooks/usePomodoro";
 export default function Pomodoro() {
   const { pomodoro, pomodoroDispatch, time, resetTimer } = usePomodoro();
   return (
-    <div className="bg-slate-800 flex flex-col gap-2 rounded-b min-w-[400px] p-2 min-h-[150px]">
+    <div className="flex flex-col gap-2 rounded-b min-w-[400px] p-2 min-h-[150px]">
       <h1
         className={`${
           !pomodoro?.isBreak && pomodoro?.hasStarted && !pomodoro.isPaused
