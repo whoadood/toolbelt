@@ -19,7 +19,7 @@ export default function Pomodoro() {
       <div className="flex justify-around items-center">
         <button
           disabled={pomodoro?.hasStarted && !pomodoro?.isPaused}
-          className={`${"hover:text-white"} text-gray-400/50 transition-colors duration-150 ease-in-out`}
+          className={`hover:text-white disabled:text-gray-400/50 text-gray-400/50 transition-colors duration-150 ease-in-out`}
           onClick={() => {
             if (!pomodoro?.hasStarted) {
               pomodoroDispatch({ type: "START_ROUND" });
