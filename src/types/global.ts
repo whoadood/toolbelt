@@ -5,3 +5,13 @@ export type Todo = {
   complete: boolean;
   totalRounds: number;
 };
+export type Pomodoro = {
+  pom: number;
+  short: number;
+  long: number;
+  hasStarted: boolean;
+  isBreak: boolean;
+  isPaused: boolean;
+  roundComplete: boolean;
+  breakCount: number;
+};

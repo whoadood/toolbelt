@@ -4,97 +4,70 @@ import {
   useContext,
   useEffect,
   useReducer,
-  useState,
 } from "react";
+import { Pomodoro } from "../types/global";
 import useTimer from "./useTimer";
 
-const initialPomodoro = {
-  pom: 25,
-  short: 5,
-  long: 15,
-  isRunning: false,
+const initialPomodoro: Pomodoro = {
+  pom: 0.25,
+  short: 0.5,
+  long: 0.75,
   hasStarted: false,
   isBreak: false,
+  isPaused: false,
+  roundComplete: false,
   breakCount: 0,
 };
 
 const PomodoroContext = createContext<
   | {
-      pomodoro: typeof initialPomodoro;
+      pomodoro: Pomodoro | undefined;
       pomodoroDispatch: React.Dispatch<REDUCER_ACTION_TYPE>;
-      pomMinutes: number;
-      formatPomSeconds: string;
-      breakMinutes: number;
-      formatBreakSeconds: string;
+      time: {
+        minutes: number;
+        seconds: number;
+      };
     }
   | undefined
 >(undefined);
 
-type REDUCER_ACTION_TYPE =
-  | {
-      type:
-        | "START_ROUND"
-        | "RESET_ROUND"
-        | "STOP_TIMER"
-        | "TRIGGER_BREAK"
-        | "END_BREAK";
-      value?: undefined;
-    }
-  | {
-      type: "COMPLETE_ROUND";
-      value: string;
-    };
+type REDUCER_ACTION_TYPE = {
+  type:
+    | "START_ROUND"
+    | "RESET_ROUND"
+    | "START_BREAK"
+    | "END_BREAK"
+    | "PAUSE_TIMER"
+    | "UNPAUSE_TIMER"
+    | "COMPLETE_ROUND";
+  value?: undefined;
+};
 
 const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
-  const [countdown, setCountdown] = useState(0);
-
-  const startTimer = useCallback(() => {
-    if (!pomodoro?.hasStarted) {
-      setCountdown(countdown + 1);
-    }
-    setCountdown(countdown + 1);
-  }, []);
-
-  const resetTimer = useCallback(() => {
-    (resetPomSeconds as () => void)();
-    (resetBreakSeconds as () => void)();
-    setCountdown(0);
-  }, []);
-
   const pomodoroReducer = (
     state = initialPomodoro,
     action: REDUCER_ACTION_TYPE
   ) => {
     switch (action.type) {
       case "START_ROUND":
-        startTimer();
-        return { ...state, hasStarted: true, isRunning: true };
+        return { ...state, hasStarted: true, roundComplete: false };
       case "COMPLETE_ROUND":
-        console.log(action.value);
-        break;
-      case "STOP_TIMER":
-        return { ...state, isRunning: false };
+        return { ...state, roundComplete: true };
+      case "PAUSE_TIMER":
+        return { ...state, isPaused: true };
+      case "UNPAUSE_TIMER":
+        return { ...state, isPaused: false };
       case "RESET_ROUND":
-        resetTimer();
-        return {
-          ...state,
-          isRunning: false,
-          isBreak: false,
-          breakCount: 0,
-          hasStarted: false,
-        };
-      case "TRIGGER_BREAK":
-        resetTimer();
+        return initialPomodoro;
+      case "START_BREAK":
         if (state.breakCount > 3) {
           return { ...state, isBreak: true, breakCount: 0 };
         }
         return { ...state, isBreak: true, breakCount: state.breakCount + 1 };
       case "END_BREAK":
-        resetTimer();
         return {
           ...state,
           isBreak: false,
-          isRunning: true,
         };
       default:
         return initialPomodoro;
@@ -105,78 +78,31 @@ const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
     pomodoroReducer,
     initialPomodoro
   );
-  console.log("pomodoro context:", pomodoro);
 
-  const { seconds: pomSeconds, resetSeconds: resetPomSeconds } = useTimer(
-    (pomodoro as typeof initialPomodoro).isRunning,
-    0.25 * 60,
+  const { seconds, setSeconds } = useTimer(
+    pomodoro as Pomodoro,
     () => {
-      pomodoroDispatch({ type: "STOP_TIMER" });
-      pomodoroDispatch({ type: "TRIGGER_BREAK" });
-    }
-  );
-  const { seconds: breakSeconds, resetSeconds: resetBreakSeconds } = useTimer(
-    (pomodoro as typeof initialPomodoro).isBreak,
-    (pomodoro as typeof initialPomodoro).breakCount > 3
-      ? (pomodoro as typeof initialPomodoro).long * 60
-      : 0.5 * 60,
-    () => {
-      pomodoroDispatch({
-        type: "END_BREAK",
-      });
-    }
-  );
-
-  useEffect(() => {
-    if (
-      (pomodoro as typeof initialPomodoro)?.isRunning ||
-      (pomodoro as typeof initialPomodoro).isBreak
-    ) {
-      if (countdown >= 59) {
-        setCountdown(0);
+      console.log("task complete callback");
+      pomodoroDispatch({ type: "COMPLETE_ROUND" });
+      if (!pomodoro.isBreak) {
+        pomodoroDispatch({ type: "START_BREAK" });
       } else {
-        setCountdown(countdown + 1);
+        pomodoroDispatch({ type: "END_BREAK" });
       }
-    }
-  }, [pomSeconds, breakSeconds]);
-
-  const getMinutesAndSeconds = useCallback(
-    (seconds: number, countdown: number, hasStarted: boolean) => {
-      console.log("min and sec", seconds);
-      const minutes = hasStarted
-        ? Math.floor((seconds - 1) / 60)
-        : Math.floor(seconds / 60);
-      const formatSeconds = `00${
-        60 - countdown === 60 ? "" : 60 - countdown
-      }`.slice(-2);
-      return { minutes, formatSeconds };
     },
-    [pomodoro?.isBreak]
+    () => {
+      console.log("round complete callback");
+      pomodoroDispatch({ type: "START_ROUND" });
+    }
   );
 
-  const { minutes: pomMinutes, formatSeconds: formatPomSeconds } =
-    getMinutesAndSeconds(
-      pomSeconds as number,
-      countdown,
-      (pomodoro as typeof initialPomodoro).isRunning
-    );
-
-  const { minutes: breakMinutes, formatSeconds: formatBreakSeconds } =
-    getMinutesAndSeconds(
-      breakSeconds as number,
-      countdown,
-      (pomodoro as typeof initialPomodoro).isBreak
-    );
-
-  const data = {
-    pomodoro: pomodoro as typeof initialPomodoro,
-    pomodoroDispatch,
-    pomMinutes,
-    formatPomSeconds,
-    breakMinutes,
-    formatBreakSeconds,
+  const time = {
+    minutes: Math.floor((seconds / 60) % 60),
+    seconds: seconds % 60,
   };
 
+  const data = { pomodoro, pomodoroDispatch, time };
+  console.log(pomodoro);
   return (
     <PomodoroContext.Provider value={data}>{children}</PomodoroContext.Provider>
   );

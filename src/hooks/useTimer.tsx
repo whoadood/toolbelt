@@ -1,26 +1,25 @@
 import { useState, useEffect, useCallback } from "react";
+import { Pomodoro } from "../types/global";
 
 const UseTimer = (
-  timerStarted: boolean,
-  initialSeconds: number,
-  taskCompletedCallback: () => void
+  pomodoro: Pomodoro,
+  taskCompletedCallback: () => void,
+  roundCompleteCallback: () => void
 ) => {
-  const [seconds, setSeconds] = useState(initialSeconds);
-
-  const resetSeconds = useCallback(() => {
-    setSeconds(initialSeconds);
-  }, [initialSeconds, timerStarted, taskCompletedCallback]);
+  const [seconds, setSeconds] = useState(pomodoro.pom * 60);
+  console.log("timer seconds", seconds);
 
   useEffect(() => {
     let time: number | undefined;
-
-    if (timerStarted) {
-      if (seconds === 0) {
-        taskCompletedCallback();
-      } else if (seconds > 0) {
-        time = setInterval(() => {
-          setSeconds(seconds - 1);
-        }, 1000);
+    if (pomodoro.hasStarted) {
+      if (!pomodoro.isPaused) {
+        if (seconds === 0) {
+          taskCompletedCallback();
+        } else if (seconds > 0) {
+          time = setInterval(() => {
+            setSeconds(seconds - 1);
+          }, 1000);
+        }
       }
     }
 
@@ -29,9 +28,26 @@ const UseTimer = (
         clearInterval(time);
       }
     };
-  }, [timerStarted, seconds, taskCompletedCallback]);
+  }, [pomodoro.hasStarted, pomodoro.isPaused, seconds]);
 
-  return { seconds, resetSeconds };
+  useEffect(() => {
+    if (pomodoro.roundComplete) {
+      if (pomodoro.isBreak) {
+        if (pomodoro.breakCount > 3) {
+          console.log("break effect long");
+          setSeconds(pomodoro.long * 60);
+        } else {
+          console.log("break effect short");
+          setSeconds(pomodoro.short * 60);
+        }
+      } else {
+        setSeconds(pomodoro.pom * 60);
+      }
+      roundCompleteCallback();
+    }
+  }, [pomodoro, seconds]);
+
+  return { seconds, setSeconds };
 };
 
 export default UseTimer;

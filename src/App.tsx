@@ -12,6 +12,7 @@ import { usePomodoro } from "./hooks/usePomodoro";
 function App() {
   const { todos } = useTodos();
   const { pomodoro } = usePomodoro();
+
   const todoRef = useRef<HTMLInputElement>();
 
   return (
@@ -25,7 +26,7 @@ function App() {
         <Draggable
           title={
             <div>
-              {pomodoro.isBreak
+              {pomodoro?.isBreak
                 ? pomodoro.breakCount > 3
                   ? "Long Break"
                   : "Short Break"
