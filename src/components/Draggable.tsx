@@ -71,7 +71,7 @@ export default function Draggable({
           {title}
         </div>
         <div
-          className={`bg-gray-900/50 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border ${border}`}
+          className={`bg-gray-900/50 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border rounded-b ${border}`}
         >
           {children}
         </div>
