@@ -22,7 +22,7 @@ function App() {
           <span>settings</span> <ChevronDownIcon className="h-4" />
         </button>
       </header>
-      <div className="absolute top-6 right-0 left-0 bottom-0 bg-[url('/lofigirl.gif')] bg-center bg-cover text-white font-bold ">
+      <div className="absolute top-6 right-0 left-0 bottom-0 bg-[url('/computerguy.gif')] bg-center bg-cover text-white font-bold ">
         <Draggable
           title={
             <div className="bg-indigo-500 p-2 rounded-tl rounded-tr">
