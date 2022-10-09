@@ -25,7 +25,7 @@ export default function TodoItem({ todo }: { todo: Todo }) {
           }}
           className={`${
             todo.complete ? "text-green-700" : "text-gray-200/20"
-          }  flex items-center active:text-green-700 cursor-pointer p-1 hover:bg-slate-700/50 rounded-full transition-colors duration-150`}
+          }  flex items-center active:text-green-700 cursor-pointer p-1 hover:bg-black/50 hover:text-white rounded-full transition-colors duration-150`}
         >
           <CheckCircleIcon className="h-8" />
           <input
@@ -38,7 +38,7 @@ export default function TodoItem({ todo }: { todo: Todo }) {
           />
         </label>
         <button
-          className="hover:bg-slate-700/50 transition-colors duration-150 p-2 rounded-full"
+          className="hover:bg-black/50 hover:text-white text-gray-200/20 transition-colors duration-150 p-2  rounded-full"
           onClick={() => {
             todosDispatch({ type: "DELETE_TODO", value: todo.text });
           }}
