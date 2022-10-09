@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState } from "react";
-import useToggle from "./useToggle";
 
 const SpotifyContext = createContext<
   | { spotifyActive: string; loadPlaylist: (playlist: string) => void }

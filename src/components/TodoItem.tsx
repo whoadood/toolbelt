@@ -8,7 +8,7 @@ export default function TodoItem({ todo }: { todo: Todo }) {
     <div
       className={`${
         todo.complete ? "opacity-50 hover:opacity-100" : ""
-      } border-solid shadow-lg flex items-center justify-between hover:border-white font-normal border-2 py-2 px-2 transition-all duration-150 rounded border-slate-600`}
+      } border-solid shadow-lg flex items-center justify-between hover:border-white font-normal border-2 py-2 px-2 transition-all duration-150 rounded border-black/25`}
       key={todo.text}
     >
       <div>

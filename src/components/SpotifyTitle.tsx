@@ -3,7 +3,7 @@ import { useSpotify } from "../hooks/useSpotify";
 const SpotifyTitle = () => {
   const { spotifyActive, loadPlaylist } = useSpotify();
   return (
-    <>
+    <div className="bg-green-900 p-2 rounded-tl rounded-tr">
       {[
         {
           text: "hip-hop",
@@ -11,7 +11,7 @@ const SpotifyTitle = () => {
         },
         {
           text: "sleep/rain",
-          url: "https://open.spotify.com/embed/playlist/35xI4hSJ8MdO1xkXwsd56a?utm_source=generator",
+          url: "https://open.spotify.com/embed/playlist/35xI4hSJ8MdO1xkXwsd56a?utm_source=generator&theme=0",
         },
       ].map((playlist) => (
         <button
@@ -24,7 +24,7 @@ const SpotifyTitle = () => {
           {playlist.text}
         </button>
       ))}
-    </>
+    </div>
   );
 };
 

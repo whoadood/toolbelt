@@ -25,7 +25,7 @@ function App() {
       <div className="absolute top-6 right-0 left-0 bottom-0 bg-[url('/lofigirl.gif')] bg-center bg-cover text-white font-bold ">
         <Draggable
           title={
-            <div>
+            <div className="bg-indigo-500 p-2 rounded-tl rounded-tr">
               {pomodoro?.isBreak
                 ? pomodoro.breakCount > 3
                   ? "Long Break"

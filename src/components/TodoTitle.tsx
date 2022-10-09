@@ -34,7 +34,7 @@ export default function TodoTitle({
   };
 
   return (
-    <div>
+    <div className="bg-purple-500 rounded-t p-2">
       {inputToggle ? (
         <form
           className="flex flex-no-wrap"

@@ -62,7 +62,7 @@ export default function Draggable({
       }}
     >
       <div className="shadow">
-        <div className="p-2 bg-slate-600 shadow-b-lg shadow-black rounded-tl rounded-tr">
+        <div className="shadow-b-lg shadow-black">
           <span className="handle absolute right-0 top-0 cursor-grab inline-block active:cursor-grabbing p-2">
             <SparklesIcon className="h-6" />
           </span>
