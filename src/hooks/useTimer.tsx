@@ -7,7 +7,10 @@ const UseTimer = (
   roundCompleteCallback: () => void
 ) => {
   const [seconds, setSeconds] = useState(pomodoro.pom * 60);
-  console.log("timer seconds", seconds);
+
+  const resetTimer = useCallback(() => {
+    setSeconds(pomodoro.pom * 60);
+  }, [pomodoro.pom]);
 
   useEffect(() => {
     let time: number | undefined;
@@ -47,7 +50,7 @@ const UseTimer = (
     }
   }, [pomodoro, seconds]);
 
-  return { seconds, setSeconds };
+  return { seconds, setSeconds, resetTimer };
 };
 
 export default UseTimer;

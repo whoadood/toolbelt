@@ -9,9 +9,9 @@ import { Pomodoro } from "../types/global";
 import useTimer from "./useTimer";
 
 const initialPomodoro: Pomodoro = {
-  pom: 0.25,
-  short: 0.5,
-  long: 0.75,
+  pom: 25,
+  short: 5,
+  long: 15,
   hasStarted: false,
   isBreak: false,
   isPaused: false,
@@ -27,6 +27,7 @@ const PomodoroContext = createContext<
         minutes: number;
         seconds: number;
       };
+      resetTimer: () => void;
     }
   | undefined
 >(undefined);
@@ -79,7 +80,7 @@ const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
     initialPomodoro
   );
 
-  const { seconds, setSeconds } = useTimer(
+  const { seconds, setSeconds, resetTimer } = useTimer(
     pomodoro as Pomodoro,
     () => {
       console.log("task complete callback");
@@ -101,7 +102,7 @@ const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
     seconds: seconds % 60,
   };
 
-  const data = { pomodoro, pomodoroDispatch, time };
+  const data = { pomodoro, pomodoroDispatch, time, resetTimer };
   console.log(pomodoro);
   return (
     <PomodoroContext.Provider value={data}>{children}</PomodoroContext.Provider>

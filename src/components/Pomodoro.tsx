@@ -1,7 +1,7 @@
 import { usePomodoro } from "../hooks/usePomodoro";
 
 export default function Pomodoro() {
-  const { pomodoro, pomodoroDispatch, time } = usePomodoro();
+  const { pomodoro, pomodoroDispatch, time, resetTimer } = usePomodoro();
   return (
     <div className="bg-slate-800 flex flex-col gap-2 rounded-b min-w-[400px] p-2 min-h-[150px]">
       <h1
@@ -41,6 +41,7 @@ export default function Pomodoro() {
           className="hover:text-white text-gray-400/50 transition-colors duration-150 ease-in-out"
           onClick={() => {
             pomodoroDispatch({ type: "RESET_ROUND" });
+            resetTimer();
           }}
         >
           reset
