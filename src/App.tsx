@@ -33,6 +33,7 @@ function App() {
                 : "Pomodoro"}
             </div>
           }
+          border={"border-indigo-500"}
         >
           <Pomodoro />
         </Draggable>
@@ -43,6 +44,7 @@ function App() {
               todoRef={todoRef as MutableRefObject<HTMLInputElement>}
             />
           }
+          border={"border-purple-500"}
         >
           <div className="flex flex-col gap-2 rounded-b min-w-[400px] p-2 min-h-[150px]">
             {todos.map((todo) => (
@@ -50,7 +52,11 @@ function App() {
             ))}
           </div>
         </Draggable>
-        <Draggable startX={760} title={<SpotifyTitle />}>
+        <Draggable
+          startX={760}
+          border={"border-green-900"}
+          title={<SpotifyTitle />}
+        >
           <Spotify />
         </Draggable>
       </div>

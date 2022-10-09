@@ -7,11 +7,13 @@ export default function Draggable({
   startY = 10,
   children,
   title,
+  border,
 }: {
   startX?: number;
   startY?: number;
   children: React.ReactNode;
   title: React.ReactNode;
+  border: string;
 }) {
   const dragRef = useRef<LegacyRef<Rnd>>();
   const [position, setPosition] = useState({
@@ -68,7 +70,9 @@ export default function Draggable({
           </span>
           {title}
         </div>
-        <div className="bg-gray-900/50 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border border-gray-800">
+        <div
+          className={`bg-gray-900/50 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border ${border}`}
+        >
           {children}
         </div>
       </div>

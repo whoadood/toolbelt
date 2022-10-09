@@ -25,7 +25,7 @@ export default function TodoInput({
         <button
           type="button"
           data-action="decrement"
-          className="hover:text-white text-gray-600 hover:bg-black/50 h-full w-6 rounded-l z-10 cursor-pointer"
+          className="hover:text-white text-gray-400 hover:bg-black/50 h-full w-6 rounded-l z-10 cursor-pointer"
           onClick={subRound}
         >
           <span className="m-auto text-2xl font-bold">−</span>
@@ -43,7 +43,7 @@ export default function TodoInput({
         <button
           data-action="increment"
           type="button"
-          className="hover:text-white text-gray-600  hover:bg-black/50 h-full w-6 rounded-r cursor-pointer"
+          className="hover:text-white text-gray-400  hover:bg-black/50 h-full w-6 rounded-r cursor-pointer"
           onClick={addRound}
         >
           <span className="m-auto text-2xl font-bold">+</span>
