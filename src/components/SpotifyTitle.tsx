@@ -7,11 +7,11 @@ const SpotifyTitle = () => {
       {[
         {
           text: "hip-hop",
-          url: "https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator&theme=0",
+          url: "0vvXsWCC9xrXsKd4FyS8kM",
         },
         {
           text: "sleep/rain",
-          url: "https://open.spotify.com/embed/playlist/35xI4hSJ8MdO1xkXwsd56a?utm_source=generator&theme=0",
+          url: "35xI4hSJ8MdO1xkXwsd56a",
         },
       ].map((playlist) => (
         <button

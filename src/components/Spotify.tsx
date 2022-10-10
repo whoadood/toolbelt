@@ -16,7 +16,7 @@ export default function Spotify() {
     <div>
       <div className="max-w-[400px]">
         <iframe
-          src={spotifyActive}
+          src={`https://open.spotify.com/embed/playlist/${spotifyActive}?utm_source=generator&theme=0`}
           width="100%"
           height="380"
           allow="autoplay; clipboard-write; encrypted-media; volume; fullscreen; picture-in-picture"
@@ -34,8 +34,8 @@ export default function Spotify() {
         >
           <input
             ref={searchRef as MutableRefObject<HTMLInputElement>}
-            className="w-full rounded bg-black/50 py-1 px-2 font-normal outline-none focus:outline-white"
-            placeholder="Enter a Spotify playlist URL"
+            className="w-full rounded bg-black/50 py-1 px-2 text-sm font-normal outline-none focus:outline-white"
+            placeholder={`Playlist ID: ${spotifyActive}`}
           />
         </form>
       </div>

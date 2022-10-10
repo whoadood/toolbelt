@@ -6,9 +6,7 @@ const SpotifyContext = createContext<
 >(undefined);
 
 const SpotifyProvider = ({ children }: { children: React.ReactNode }) => {
-  const [spotifyActive, setSpotifyActive] = useState(
-    "https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator&theme=0"
-  );
+  const [spotifyActive, setSpotifyActive] = useState("0vvXsWCC9xrXsKd4FyS8kM");
 
   const loadPlaylist = (playlist: string) => {
     setSpotifyActive(playlist);
