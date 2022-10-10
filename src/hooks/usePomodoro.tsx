@@ -4,9 +4,9 @@ import useTimer from "./useTimer";
 import { useTodos } from "./useTodos";
 
 const initialPomodoro: Pomodoro = {
-  pom: 0.25,
-  short: 0.25,
-  long: 0.5,
+  pom: 25,
+  short: 5,
+  long: 15,
   hasStarted: false,
   isBreak: false,
   isPaused: false,
