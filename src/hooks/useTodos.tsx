@@ -56,7 +56,6 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
   const [todos, todosDispatch] = useReducer(todoReducer, initialTodos);
-  console.log("use todos", todos);
 
   const data = { todos, todosDispatch };
 

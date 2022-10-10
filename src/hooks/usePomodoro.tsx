@@ -91,7 +91,6 @@ const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
   const { seconds, resetTimer } = useTimer(
     pomodoro as Pomodoro,
     () => {
-      console.log("task complete callback");
       pomodoroDispatch({ type: "COMPLETE_ROUND" });
       if (pomodoro.activeTodo && !pomodoro.isBreak) {
         todosDispatch({ type: "COMPLETE_TODO", value: pomodoro.activeTodo });
@@ -103,7 +102,6 @@ const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
       }
     },
     () => {
-      console.log("round complete callback");
       pomodoroDispatch({ type: "START_ROUND" });
     }
   );
