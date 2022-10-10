@@ -1,9 +1,12 @@
 import React, { MutableRefObject, useCallback, useRef } from "react";
 import { useSpotify } from "../hooks/useSpotify";
+import useToggle from "../hooks/useToggle";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 export default function Spotify() {
   const searchRef = useRef<HTMLInputElement>();
   const { spotifyActive, loadPlaylist } = useSpotify();
+  const { toggle, handleToggle } = useToggle();
 
   const submit = useCallback((e: React.KeyboardEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,13 +21,15 @@ export default function Spotify() {
         <iframe
           src={`https://open.spotify.com/embed/playlist/${spotifyActive}?utm_source=generator&theme=0`}
           width="100%"
-          height="380"
+          height={toggle ? "380" : "80px"}
           allow="autoplay; clipboard-write; encrypted-media; volume; fullscreen; picture-in-picture"
           loading="lazy"
+          className="transition-all duration-300 ease-in-out"
         />
       </div>
-      <div className="rounded-b bg-green-900 px-2 py-2">
+      <div className="flex rounded-b bg-green-900 px-2 py-2">
         <form
+          className="w-full"
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               submit(e);
@@ -38,6 +43,13 @@ export default function Spotify() {
             placeholder={`Playlist ID: ${spotifyActive}`}
           />
         </form>
+        <button onClick={handleToggle} className="ml-2">
+          <ChevronDownIcon
+            className={`h-6 ${
+              toggle ? "rotate-180" : ""
+            } rounded-full transition-transform duration-300 ease-in-out`}
+          />
+        </button>
       </div>
     </div>
   );
