@@ -31,7 +31,9 @@ export default function TodoItem({ todo }: { todo: Todo }) {
           htmlFor={todo.id}
           onClick={() => {
             todosDispatch({ type: "COMPLETE_TODO", value: todo.id });
-            pomodoroDispatch({ type: "UPDATE_ACTIVE" });
+            if (pomodoro?.hasStarted) {
+              pomodoroDispatch({ type: "UPDATE_ACTIVE" });
+            }
           }}
           className={`${
             todo.complete ? "text-green-700" : "text-gray-200/20"
