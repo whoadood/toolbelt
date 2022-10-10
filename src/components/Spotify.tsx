@@ -17,7 +17,6 @@ export default function Spotify() {
       <div className="max-w-[400px]">
         <iframe
           src={spotifyActive}
-          allowTransparency={true}
           width="100%"
           height="380"
           allow="autoplay; clipboard-write; encrypted-media; volume; fullscreen; picture-in-picture"
