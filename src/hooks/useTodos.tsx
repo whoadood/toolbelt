@@ -23,11 +23,6 @@ type REDUCER_ACTION_TYPE =
       value: undefined;
     };
 
-type ReducerAction = {
-  type: REDUCER_ACTION_TYPE;
-  value?: Todo | string;
-};
-
 const initialTodos: Todo[] = [];
 
 const TodoProvider = ({ children }: { children: React.ReactNode }) => {
@@ -37,7 +32,7 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
         return [...state, action.value];
       case "COMPLETE_TODO":
         return state.map((td) => {
-          if (td.text === action.value) {
+          if (td.id === action.value) {
             if (td.complete) {
               return { ...td, complete: false, currentRound: 0 };
             }
@@ -53,7 +48,7 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
           return td;
         });
       case "DELETE_TODO":
-        return state.filter((td) => td.text !== action.value);
+        return state.filter((td) => td.id !== action.value);
       case "RESET_TODOS":
         return initialTodos;
       default:
@@ -61,6 +56,7 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
   const [todos, todosDispatch] = useReducer(todoReducer, initialTodos);
+  console.log("use todos", todos);
 
   const data = { todos, todosDispatch };
 

@@ -56,7 +56,7 @@ function App() {
         >
           <div className="flex min-h-[150px] min-w-[400px] flex-col gap-2 rounded-b p-2">
             {todos.map((todo) => (
-              <TodoItem key={todo.text} todo={todo} />
+              <TodoItem key={todo.id} todo={todo} />
             ))}
           </div>
         </Draggable>

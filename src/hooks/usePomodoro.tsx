@@ -1,6 +1,7 @@
 import { createContext, useContext, useReducer } from "react";
 import { Pomodoro } from "../types/global";
 import useTimer from "./useTimer";
+import { useTodos } from "./useTodos";
 
 const initialPomodoro: Pomodoro = {
   pom: 25,
@@ -11,6 +12,7 @@ const initialPomodoro: Pomodoro = {
   isPaused: false,
   roundComplete: false,
   breakCount: 0,
+  activeTodo: undefined,
 };
 
 const PomodoroContext = createContext<
@@ -39,14 +41,23 @@ type REDUCER_ACTION_TYPE = {
 };
 
 const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
+  const { todos, todosDispatch } = useTodos();
   const pomodoroReducer = (
     state = initialPomodoro,
     action: REDUCER_ACTION_TYPE
   ) => {
     switch (action.type) {
       case "START_ROUND":
-        return { ...state, hasStarted: true, roundComplete: false };
+        return {
+          ...state,
+          hasStarted: true,
+          roundComplete: false,
+          activeTodo: todos.find((td) => td.currentRound < td.totalRounds)?.id,
+        };
       case "COMPLETE_ROUND":
+        if (state.activeTodo) {
+          todosDispatch({ type: "COMPLETE_TODO", value: state.activeTodo });
+        }
         return { ...state, roundComplete: true };
       case "PAUSE_TIMER":
         return { ...state, isPaused: true };
@@ -97,7 +108,6 @@ const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const data = { pomodoro, pomodoroDispatch, time, resetTimer };
-  console.log(pomodoro);
   return (
     <PomodoroContext.Provider value={data}>{children}</PomodoroContext.Provider>
   );

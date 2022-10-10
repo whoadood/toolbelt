@@ -4,6 +4,7 @@ import { useInputTodo } from "../hooks/useInputTodo";
 import useTodoRounds from "../hooks/useTodoRounds";
 import { useTodos } from "../hooks/useTodos";
 import TodoInput from "./TodoInput";
+import uuid from "react-uuid";
 
 export default function TodoTitle({
   todoRef,
@@ -24,6 +25,7 @@ export default function TodoTitle({
     todosDispatch({
       type: "ADD_TODO",
       value: {
+        id: uuid(),
         text: todoRef.current.value,
         complete: false,
         currentRound: 0,

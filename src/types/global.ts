@@ -1,5 +1,5 @@
 export type Todo = {
-  id?: string;
+  id: string;
   text: string;
   currentRound: number;
   complete: boolean;
@@ -14,6 +14,7 @@ export type Pomodoro = {
   isPaused: boolean;
   roundComplete: boolean;
   breakCount: number;
+  activeTodo: string | undefined;
 };
 export type Quote = {
   id: number;
