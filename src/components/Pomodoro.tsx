@@ -3,23 +3,23 @@ import { usePomodoro } from "../hooks/usePomodoro";
 export default function Pomodoro() {
   const { pomodoro, pomodoroDispatch, time, resetTimer } = usePomodoro();
   return (
-    <div className="flex flex-col gap-2 rounded-b min-w-[400px] p-2 min-h-[150px]">
+    <div className="flex min-h-[150px] min-w-[400px] flex-col gap-2 rounded-b p-2">
       <h1
         className={`${
           !pomodoro?.isBreak && pomodoro?.hasStarted && !pomodoro.isPaused
             ? "text-white"
             : "text-gray-400/50"
         }
-         text-8xl mx-auto`}
+         mx-auto text-8xl`}
       >
         <span>{`${String(time.minutes).padStart(2, "0")}:${String(
           time.seconds
         ).padStart(2, "0")}`}</span>
       </h1>
-      <div className="flex justify-around items-center">
+      <div className="flex items-center justify-around">
         <button
           disabled={pomodoro?.hasStarted && !pomodoro?.isPaused}
-          className={`hover:text-white disabled:text-gray-400/50 text-gray-400/50 transition-colors duration-150 ease-in-out`}
+          className={`text-gray-400/50 transition-colors duration-150 ease-in-out hover:text-white disabled:text-gray-400/50`}
           onClick={() => {
             if (!pomodoro?.hasStarted) {
               pomodoroDispatch({ type: "START_ROUND" });
@@ -30,7 +30,7 @@ export default function Pomodoro() {
           start
         </button>
         <button
-          className="hover:text-white text-gray-400/50 transition-colors duration-150 ease-in-out"
+          className="text-gray-400/50 transition-colors duration-150 ease-in-out hover:text-white"
           onClick={() => {
             pomodoroDispatch({ type: "PAUSE_TIMER" });
           }}
@@ -38,7 +38,7 @@ export default function Pomodoro() {
           pause
         </button>
         <button
-          className="hover:text-white text-gray-400/50 transition-colors duration-150 ease-in-out"
+          className="text-gray-400/50 transition-colors duration-150 ease-in-out hover:text-white"
           onClick={() => {
             pomodoroDispatch({ type: "RESET_ROUND" });
             resetTimer();

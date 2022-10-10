@@ -3,7 +3,7 @@ import { useSpotify } from "../hooks/useSpotify";
 const SpotifyTitle = () => {
   const { spotifyActive, loadPlaylist } = useSpotify();
   return (
-    <div className="bg-green-900 p-2 rounded-tl rounded-tr">
+    <div className="rounded-tl rounded-tr bg-green-900 p-2">
       {[
         {
           text: "hip-hop",

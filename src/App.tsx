@@ -17,16 +17,16 @@ function App() {
   const todoRef = useRef<HTMLInputElement>();
 
   return (
-    <div className="min-h-screen flex bg-gradient-to-r from-teal-500 via-indigo-500 to-purple-500 text-gray-100 font-bold justify-end px-2 relative">
+    <div className="relative flex min-h-screen justify-end bg-gradient-to-r from-teal-500 via-indigo-500 to-purple-500 px-2 font-bold text-gray-100">
       <header className="shadow-lg">
-        <button className="drop-shadow-2xl hover:text-white ease-in-out transition-colors duration-150 text-gray-300 flex items-center">
+        <button className="flex items-center text-gray-300 drop-shadow-2xl transition-colors duration-150 ease-in-out hover:text-white">
           <span>settings</span> <ChevronDownIcon className="h-4" />
         </button>
       </header>
-      <div className="absolute top-6 right-0 left-0 bottom-0 bg-[url('/computerguy.gif')] bg-center bg-cover text-white font-bold ">
+      <div className="absolute top-6 right-0 left-0 bottom-0 bg-[url('/computerguy.gif')] bg-cover bg-center font-bold text-white ">
         <Draggable
           title={
-            <div className="bg-fuchsia-500 rounded-t p-2">Inspiration</div>
+            <div className="rounded-t bg-fuchsia-500 p-2">Inspiration</div>
           }
           border={"border-fuchsia-500"}
           startX={40}
@@ -36,7 +36,7 @@ function App() {
         </Draggable>
         <Draggable
           title={
-            <div className="bg-indigo-500 p-2 rounded-tl rounded-tr">
+            <div className="rounded-tl rounded-tr bg-indigo-500 p-2">
               {pomodoro?.isBreak
                 ? pomodoro.breakCount > 3
                   ? "Long Break"
@@ -57,7 +57,7 @@ function App() {
           }
           border={"border-purple-500"}
         >
-          <div className="flex flex-col gap-2 rounded-b min-w-[400px] p-2 min-h-[150px]">
+          <div className="flex min-h-[150px] min-w-[400px] flex-col gap-2 rounded-b p-2">
             {todos.map((todo) => (
               <TodoItem key={todo.text} todo={todo} />
             ))}

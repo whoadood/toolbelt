@@ -40,7 +40,8 @@ export default function Draggable({
   }, []);
 
   const onDragStop = (e: RndDragEvent, d: DraggableData) => {
-    const { x, y } = d;
+    const { x, y, node } = d;
+    node.style.zIndex = "";
     setPosition((prev) => ({
       ...prev,
       x,
@@ -53,6 +54,9 @@ export default function Draggable({
       ref={dragRef as LegacyRef<Rnd>}
       bounds="parent"
       enableResizing={false}
+      onDragStart={(e, d) => {
+        d.node.style.zIndex = "100";
+      }}
       onDragStop={onDragStop}
       position={position}
       default={{
@@ -62,10 +66,10 @@ export default function Draggable({
         width: "",
       }}
     >
-      <div className="shadow cursor-grab active:cursor-grabbing">
+      <div className="cursor-grab shadow active:cursor-grabbing">
         <div className="shadow-b-lg shadow-black">{title}</div>
         <div
-          className={`bg-gray-900/50 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border rounded-b ${border}`}
+          className={`rounded-b border bg-gray-900/50 bg-opacity-60 bg-clip-padding backdrop-blur-sm backdrop-filter ${border}`}
         >
           {children}
         </div>

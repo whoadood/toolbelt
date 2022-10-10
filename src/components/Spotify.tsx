@@ -23,7 +23,7 @@ export default function Spotify() {
           loading="lazy"
         />
       </div>
-      <div className="rounded-b px-2 py-2 bg-green-900">
+      <div className="rounded-b bg-green-900 px-2 py-2">
         <form
           onKeyDown={(e) => {
             if (e.key === "Enter") {
@@ -34,7 +34,7 @@ export default function Spotify() {
         >
           <input
             ref={searchRef as MutableRefObject<HTMLInputElement>}
-            className="bg-black/50 w-full outline-none rounded font-normal py-1 px-2 focus:outline-white"
+            className="w-full rounded bg-black/50 py-1 px-2 font-normal outline-none focus:outline-white"
             placeholder="Enter a Spotify playlist URL"
           />
         </form>

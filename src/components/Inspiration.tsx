@@ -4,8 +4,8 @@ export default function Inspiration() {
   const { inspiration, randomQuote, activeQuote } = useInspiration();
 
   return (
-    <div className="flex wrap flex-col gap-2 rounded-b w-[300px] px-4 py-2 min-h-[150px]">
-      <p className="font-[cursive]">
+    <div className="wrap flex min-h-[150px] w-[300px] flex-col items-start justify-center gap-2 rounded-b px-4 py-2">
+      <p className="font-[cursive] text-lg">
         {activeQuote && `"${activeQuote.quote}"`}
       </p>
       <p className="text-gray-200/50">

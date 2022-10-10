@@ -8,14 +8,14 @@ export default function TodoItem({ todo }: { todo: Todo }) {
     <div
       className={`${
         todo.complete ? "opacity-50 hover:opacity-100" : ""
-      } border-solid shadow-lg flex items-center justify-between hover:border-purple-500 font-normal border-2 py-2 px-2 transition-all duration-150 rounded border-purple-500/25`}
+      } flex items-center justify-between rounded border-2 border-solid border-purple-500/25 py-2 px-2 font-normal shadow-lg transition-all duration-150 hover:border-purple-500`}
       key={todo.text}
     >
       <div>
         <p className={`${todo.complete ? "line-through" : ""}`}>{todo.text}</p>
       </div>
       <div className="flex gap-2">
-        <p className="flex items-center text-gray-400 font-bold">
+        <p className="flex items-center font-bold text-gray-400">
           {todo.currentRound}/{todo.totalRounds}
         </p>
         <label
@@ -25,7 +25,7 @@ export default function TodoItem({ todo }: { todo: Todo }) {
           }}
           className={`${
             todo.complete ? "text-green-700" : "text-gray-200/20"
-          }  flex items-center active:text-green-700 cursor-pointer p-1 hover:bg-black/50 hover:text-white rounded-full transition-colors duration-150`}
+          }  flex cursor-pointer items-center rounded-full p-1 transition-colors duration-150 hover:bg-black/50 hover:text-white active:text-green-700`}
         >
           <CheckCircleIcon className="h-8" />
           <input
@@ -38,7 +38,7 @@ export default function TodoItem({ todo }: { todo: Todo }) {
           />
         </label>
         <button
-          className="hover:bg-black/50 hover:text-white text-gray-200/20 transition-colors duration-150 p-2  rounded-full"
+          className="rounded-full p-2 text-gray-200/20 transition-colors duration-150 hover:bg-black/50  hover:text-white"
           onClick={() => {
             todosDispatch({ type: "DELETE_TODO", value: todo.text });
           }}
