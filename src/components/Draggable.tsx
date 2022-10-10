@@ -55,7 +55,6 @@ export default function Draggable({
       enableResizing={false}
       onDragStop={onDragStop}
       position={position}
-      dragHandleClassName={"handle"}
       default={{
         x: 0,
         y: 0,
@@ -63,13 +62,8 @@ export default function Draggable({
         width: "",
       }}
     >
-      <div className="shadow">
-        <div className="shadow-b-lg shadow-black">
-          <span className="handle absolute right-0 top-0 cursor-grab inline-block active:cursor-grabbing p-2">
-            <SparklesIcon className="h-6" />
-          </span>
-          {title}
-        </div>
+      <div className="shadow cursor-grab active:cursor-grabbing">
+        <div className="shadow-b-lg shadow-black">{title}</div>
         <div
           className={`bg-gray-900/50 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border rounded-b ${border}`}
         >
