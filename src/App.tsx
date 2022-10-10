@@ -9,39 +9,17 @@ import { useTodos } from "./hooks/useTodos";
 import Pomodoro from "./components/Pomodoro";
 import { usePomodoro } from "./hooks/usePomodoro";
 import Inspiration from "./components/Inspiration";
-
-const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+import Header from "./components/Header";
 
 function App() {
   const { todos } = useTodos();
   const { pomodoro } = usePomodoro();
-  const today = new Date();
 
   const todoRef = useRef<HTMLInputElement>();
 
   return (
     <div className="relative flex min-h-screen justify-end bg-gradient-to-r from-teal-500 via-indigo-500 to-purple-500 px-2 font-bold text-gray-100">
-      <header className="z-50 flex h-full w-full items-start justify-end shadow-lg">
-        <span className="mx-auto">
-          {months[today.getMonth()]} {today.getDate()}
-        </span>
-        <button className="flex items-center text-gray-300 drop-shadow-2xl transition-colors duration-150 ease-in-out hover:text-white">
-          <span>settings</span> <ChevronDownIcon className="h-4" />
-        </button>
-      </header>
+      <Header />
       <div className="absolute top-6 right-0 left-0 bottom-0 bg-[url('/computerguy.gif')] bg-cover bg-center font-bold text-white ">
         <Draggable
           title={

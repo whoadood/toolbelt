@@ -1,5 +1,4 @@
 import React, { LegacyRef, useEffect, useRef, useState } from "react";
-import { SparklesIcon } from "@heroicons/react/24/outline";
 import { DraggableData, Rnd, RndDragEvent } from "react-rnd";
 
 export default function Draggable({
