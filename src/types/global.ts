@@ -15,3 +15,9 @@ export type Pomodoro = {
   roundComplete: boolean;
   breakCount: number;
 };
+export type Quote = {
+  id: number;
+  quote: string;
+  source: string;
+  link: string;
+};

@@ -8,6 +8,7 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useTodos } from "./hooks/useTodos";
 import Pomodoro from "./components/Pomodoro";
 import { usePomodoro } from "./hooks/usePomodoro";
+import Inspiration from "./components/Inspiration";
 
 function App() {
   const { todos } = useTodos();
@@ -23,6 +24,16 @@ function App() {
         </button>
       </header>
       <div className="absolute top-6 right-0 left-0 bottom-0 bg-[url('/computerguy.gif')] bg-center bg-cover text-white font-bold ">
+        <Draggable
+          title={
+            <div className="bg-fuchsia-500 rounded-t p-2">Inspiration</div>
+          }
+          border={"border-fuchsia-500"}
+          startX={40}
+          startY={210}
+        >
+          <Inspiration />
+        </Draggable>
         <Draggable
           title={
             <div className="bg-indigo-500 p-2 rounded-tl rounded-tr">
