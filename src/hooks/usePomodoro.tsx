@@ -4,9 +4,9 @@ import useTimer from "./useTimer";
 import { useTodos } from "./useTodos";
 
 const initialPomodoro: Pomodoro = {
-  pom: 25,
-  short: 5,
-  long: 15,
+  pom: 0.25,
+  short: 0.25,
+  long: 0.5,
   hasStarted: false,
   isBreak: false,
   isPaused: false,
@@ -36,7 +36,8 @@ type REDUCER_ACTION_TYPE = {
     | "END_BREAK"
     | "PAUSE_TIMER"
     | "UNPAUSE_TIMER"
-    | "COMPLETE_ROUND";
+    | "COMPLETE_ROUND"
+    | "UPDATE_ACTIVE";
   value?: undefined;
 };
 
@@ -55,10 +56,12 @@ const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
           activeTodo: todos.find((td) => td.currentRound < td.totalRounds)?.id,
         };
       case "COMPLETE_ROUND":
-        if (state.activeTodo) {
-          todosDispatch({ type: "COMPLETE_TODO", value: state.activeTodo });
-        }
         return { ...state, roundComplete: true };
+      case "UPDATE_ACTIVE":
+        return {
+          ...state,
+          activeTodo: todos.find((td) => td.currentRound < td.totalRounds)?.id,
+        };
       case "PAUSE_TIMER":
         return { ...state, isPaused: true };
       case "UNPAUSE_TIMER":
@@ -90,6 +93,9 @@ const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
     () => {
       console.log("task complete callback");
       pomodoroDispatch({ type: "COMPLETE_ROUND" });
+      if (pomodoro.activeTodo && !pomodoro.isBreak) {
+        todosDispatch({ type: "COMPLETE_TODO", value: pomodoro.activeTodo });
+      }
       if (!pomodoro.isBreak) {
         pomodoroDispatch({ type: "START_BREAK" });
       } else {

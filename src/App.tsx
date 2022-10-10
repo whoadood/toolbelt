@@ -4,7 +4,6 @@ import Draggable from "./components/Draggable";
 import TodoItem from "./components/TodoItem";
 import TodoTitle from "./components/TodoTitle";
 import SpotifyTitle from "./components/SpotifyTitle";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useTodos } from "./hooks/useTodos";
 import Pomodoro from "./components/Pomodoro";
 import { usePomodoro } from "./hooks/usePomodoro";
@@ -23,7 +22,7 @@ function App() {
       <div className="absolute top-6 right-0 left-0 bottom-0 bg-[url('/computerguy.gif')] bg-cover bg-center font-bold text-white ">
         <Draggable
           title={
-            <div className="rounded-t bg-fuchsia-500 p-2">Inspiration</div>
+            <div className="rounded-t bg-fuchsia-600 p-2">Inspiration</div>
           }
           border={"border-fuchsia-500"}
           startX={40}
