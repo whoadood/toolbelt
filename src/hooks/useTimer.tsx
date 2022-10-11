@@ -21,6 +21,12 @@ const UseTimer = (
     if (pomodoro.hasStarted) {
       if (!pomodoro.isPaused) {
         if (seconds === 0) {
+          /* 
+          ** taskCompleteCallback **
+          - set roundComplete: true
+          - update todo list
+          - set isBreak: true | false conditionally
+          */
           taskCompletedCallback();
         } else if (seconds > 0) {
           time = setInterval(() => {
@@ -44,7 +50,10 @@ const UseTimer = (
     seconds,
   ]);
 
-  // if countdown timer is not running update seconds state, when pomodoro time variables are changed
+  /* 
+  if countdown timer is not running update 
+  seconds state, when pomodoro time variables are changed 
+  */
   useEffect(() => {
     if (!pomodoro.hasStarted) {
       setSeconds(pomodoro.pom * 60);
@@ -56,15 +65,21 @@ const UseTimer = (
     if (pomodoro.roundComplete) {
       if (pomodoro.isBreak) {
         if (pomodoro.breakCount > 3) {
-          console.log("break effect long");
+          // start long break
           setSeconds(pomodoro.long * 60);
         } else {
-          console.log("break effect short");
+          // start short break
           setSeconds(pomodoro.short * 60);
         }
       } else {
         setSeconds(pomodoro.pom * 60);
       }
+      /* 
+      ** round complete callback **
+      - set hasStarted: true
+      - set roundComplete: false
+      - update active todo
+      */
       roundCompleteCallback();
     }
   }, [
