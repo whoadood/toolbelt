@@ -82,7 +82,7 @@ const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
         };
       case "START_BREAK":
         if (state.breakCount > 3) {
-          return { ...state, isBreak: true, breakCount: 0 };
+          return { ...state, isBreak: true, breakCount: 1 };
         }
         return { ...state, isBreak: true, breakCount: state.breakCount + 1 };
       case "END_BREAK":
