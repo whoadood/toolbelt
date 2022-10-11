@@ -7,6 +7,7 @@ import { InputTodoProvider } from "./hooks/useInputTodo";
 import { SpotifyProvider } from "./hooks/useSpotify";
 import { PomodoroProvider } from "./hooks/usePomodoro";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { SettingsProvider } from "./hooks/useSettings";
 
 const queryClient = new QueryClient();
 
@@ -16,9 +17,11 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <InputTodoProvider>
         <SpotifyProvider>
           <PomodoroProvider>
-            <QueryClientProvider client={queryClient}>
-              <App />
-            </QueryClientProvider>
+            <SettingsProvider>
+              <QueryClientProvider client={queryClient}>
+                <App />
+              </QueryClientProvider>
+            </SettingsProvider>
           </PomodoroProvider>
         </SpotifyProvider>
       </InputTodoProvider>

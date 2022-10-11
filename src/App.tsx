@@ -11,19 +11,25 @@ import Inspiration from "./components/Inspiration";
 import Header from "./components/Header";
 import Settings from "./components/Settings";
 import useToggle from "./hooks/useToggle";
+import { useSettings } from "./hooks/useSettings";
 
 function App() {
   const { todos } = useTodos();
   const { pomodoro } = usePomodoro();
   const { toggle, handleToggle } = useToggle();
   const todoRef = useRef<HTMLInputElement>();
+  const { activeImage } = useSettings();
 
+  console.log("active image", activeImage);
   return (
     <div className="relative flex min-h-screen justify-end bg-gradient-to-r from-teal-500 via-indigo-500 to-purple-500 px-2 font-bold text-gray-100">
       <Header handleToggle={handleToggle} />
       <Settings toggle={toggle} handleToggle={handleToggle} />
       {/* ************ dropzone ************ */}
-      <div className="absolute top-6 right-0 left-0 bottom-0 bg-[url('/computerguy.gif')] bg-cover bg-center font-bold text-white ">
+      <div
+        style={{ backgroundImage: `url('${activeImage}')` }}
+        className={`absolute top-6 right-0 left-0 bottom-0 bg-cover bg-center font-bold text-white `}
+      >
         {/* ************ inspirational quotes ************ */}
         <Draggable
           title={

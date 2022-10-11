@@ -1,4 +1,6 @@
+import { useSettings } from "../hooks/useSettings";
 import PomodorMenu from "./PomodorMenu";
+import SettingsHeading from "./SettingsHeading";
 
 const heading = ["Pomodoro", "todo list", "spotify", "inspiration"];
 
@@ -9,6 +11,7 @@ export default function Settings({
   toggle: boolean;
   handleToggle: () => void;
 }) {
+  const { updateImage, backgroundImages } = useSettings();
   return (
     // Backdrop
     <div
@@ -32,17 +35,22 @@ export default function Settings({
         {/* MENU */}
         <div className="h-[500px] rounded-b border border-amber-500 bg-gray-900/50 bg-opacity-60 bg-clip-padding p-2 backdrop-blur-sm backdrop-filter">
           {/* MENU HEADING */}
-          <h2 className="flex items-center justify-around gap-2 border-b border-gray-400/50 ">
-            {heading.map((h) => (
-              <button className="text-gray-200/50 transition-colors duration-150 ease-in-out hover:text-white">
-                {h}
-              </button>
-            ))}
-          </h2>
+          <SettingsHeading title="Pomodoro" />
           {/* MENU BODY */}
-          <div>
-            <PomodorMenu />
-          </div>
+          <PomodorMenu />
+          <ul className="flex items-center justify-start gap-2">
+            {backgroundImages.map((image) => (
+              <li key={image.image}>
+                <button onClick={() => updateImage(image.image)}>
+                  <img
+                    className="h-16 w-16"
+                    alt={image.title}
+                    src={image.image}
+                  />
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>

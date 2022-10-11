@@ -15,7 +15,7 @@ export default function PomodorMenu() {
     <div className="flex justify-around p-2">
       {/* ************ pomodoro ************ */}
       <div className="flex flex-col justify-center">
-        <h3 className="text-center">Pomodoro</h3>
+        <h3 className="text-center text-sm">Pomodoro</h3>
         <IncDecInput
           rounds={(pomodoro as Pomodoro).pom}
           addRound={() => {
@@ -30,7 +30,7 @@ export default function PomodorMenu() {
       </div>
       {/* ************ short break ************ */}
       <div className="flex flex-col justify-center">
-        <h3 className="text-center">Short</h3>
+        <h3 className="text-center text-sm">Short</h3>
         <IncDecInput
           rounds={(pomodoro as Pomodoro).short}
           addRound={() => {
@@ -45,7 +45,7 @@ export default function PomodorMenu() {
       </div>
       {/* ************ long break ************ */}
       <div className="flex flex-col justify-center">
-        <h3 className="text-center">Long</h3>
+        <h3 className="text-center text-sm">Long</h3>
         <IncDecInput
           rounds={(pomodoro as Pomodoro).long}
           addRound={() => {
@@ -61,7 +61,7 @@ export default function PomodorMenu() {
       {/* ************ reset ************ */}
       <div>
         <button
-          className="mt-6 flex items-center justify-center rounded p-2 transition-colors duration-150 ease-in-out hover:bg-black/50"
+          className="mt-6 flex items-center justify-center rounded p-2 text-sm transition-colors duration-150 ease-in-out hover:bg-black/50"
           onClick={() => {
             pomodoroDispatch({ type: "INITIAL_POMODORO" });
           }}
