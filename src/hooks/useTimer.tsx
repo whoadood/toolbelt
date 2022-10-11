@@ -24,6 +24,7 @@ const UseTimer = (
           /* 
           ** taskCompleteCallback **
           - set roundComplete: true
+          - play round complete sound
           - update todo list
           - set isBreak: true | false conditionally
           */

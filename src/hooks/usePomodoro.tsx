@@ -1,7 +1,8 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import { Pomodoro } from "../types/global";
 import useTimer from "./useTimer";
 import { useTodos } from "./useTodos";
+import useOwen from "../hooks/useOwen";
 
 const initialPomodoro: Pomodoro = {
   pom: 25,
@@ -50,6 +51,7 @@ type REDUCER_ACTION_TYPE = {
 
 const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
   const { todos, todosDispatch } = useTodos();
+  const { activeWow, randomWow, owen } = useOwen();
   const pomodoroReducer = (
     state = initialPomodoro,
     action: REDUCER_ACTION_TYPE
@@ -132,6 +134,15 @@ const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
     // round complete callback
     () => {
       pomodoroDispatch({ type: "COMPLETE_ROUND" });
+      let audio = new Audio(activeWow);
+      audio.load();
+      // volume .01 - 1
+      // audio.volume =
+      audio.play();
+      // if owen has data and alarm is in owen.data(d => d.audio)
+      if (owen.data) {
+        randomWow(owen.data);
+      }
       if (pomodoro.activeTodo && !pomodoro.isBreak) {
         todosDispatch({ type: "COMPLETE_TODO", value: pomodoro.activeTodo });
       }

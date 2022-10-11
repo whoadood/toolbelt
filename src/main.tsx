@@ -13,18 +13,18 @@ const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <TodoProvider>
-      <InputTodoProvider>
-        <SpotifyProvider>
-          <PomodoroProvider>
-            <SettingsProvider>
-              <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <TodoProvider>
+        <InputTodoProvider>
+          <SpotifyProvider>
+            <PomodoroProvider>
+              <SettingsProvider>
                 <App />
-              </QueryClientProvider>
-            </SettingsProvider>
-          </PomodoroProvider>
-        </SpotifyProvider>
-      </InputTodoProvider>
-    </TodoProvider>
+              </SettingsProvider>
+            </PomodoroProvider>
+          </SpotifyProvider>
+        </InputTodoProvider>
+      </TodoProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
