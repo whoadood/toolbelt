@@ -2,6 +2,7 @@ import React, { LegacyRef, useEffect, useRef, useState } from "react";
 import { DraggableData, Rnd, RndDragEvent } from "react-rnd";
 
 export default function Draggable({
+  // ~ center
   startX = 350,
   startY = 10,
   children,
@@ -22,10 +23,11 @@ export default function Draggable({
     width: "",
   });
 
+  // on window resize update position of draggable elements so they are within boundary
   useEffect(() => {
     const resizer = () => {
       const windowMinusElement =
-        //@ts-ignore
+        // @ts-ignore no idea what to do about this resizable doesnt exist on object?
         window.innerWidth - dragRef.current?.resizable.state.width;
       setPosition((prev) => {
         return {

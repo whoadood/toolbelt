@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+// logic for incrementor/decrementor selector input
 export default function useTodoRounds() {
   const [rounds, setRounds] = useState(1);
 

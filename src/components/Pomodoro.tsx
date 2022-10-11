@@ -4,7 +4,7 @@ export default function Pomodoro() {
   const { pomodoro, pomodoroDispatch, time, resetTimer } = usePomodoro();
   return (
     <div className="flex min-h-[150px] min-w-[360px] flex-col gap-2 rounded-b p-2">
-      <h1
+      <h2
         className={`${
           !pomodoro?.isBreak && pomodoro?.hasStarted && !pomodoro.isPaused
             ? "text-white"
@@ -15,7 +15,8 @@ export default function Pomodoro() {
         <span>{`${String(time.minutes).padStart(2, "0")}:${String(
           time.seconds
         ).padStart(2, "0")}`}</span>
-      </h1>
+      </h2>
+      {/* ************ footer ************ */}
       <div className="flex items-center justify-around">
         <button
           disabled={pomodoro?.hasStarted && !pomodoro?.isPaused}

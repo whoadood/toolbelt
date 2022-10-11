@@ -13,6 +13,7 @@ export default function TodoItem({ todo }: { todo: Todo }) {
         todo.complete ? "opacity-50 hover:opacity-100" : ""
       } flex items-center justify-between rounded border-2 border-solid border-purple-500/25 py-2 px-2 font-normal shadow-lg transition-all duration-150 hover:border-purple-500`}
     >
+      {/* ************ todo text ************ */}
       <div>
         <div className="flex gap-2">
           {pomodoro?.activeTodo === todo.id && (
@@ -23,6 +24,7 @@ export default function TodoItem({ todo }: { todo: Todo }) {
           </p>
         </div>
       </div>
+      {/* ************ todo info ************ */}
       <div className="flex gap-2">
         <p className="flex items-center font-bold text-gray-400">
           {todo.currentRound}/{todo.totalRounds}

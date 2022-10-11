@@ -49,16 +49,19 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
   const today = new Date();
   return (
     <header className="z-50 flex h-full w-full items-start justify-end shadow-lg">
+      {/* clock */}
       <span className="mx-auto">
-        {months[today.getMonth()]} {today.getDate()}
+        {months[today.getMonth()]} {today.getDate()} {today.getHours()}:
+        {`${today.getMinutes()}`.padStart(2, "0")}
       </span>
+      {/* settings */}
       <button
         onClick={handleToggle}
         className="flex items-center text-gray-300 drop-shadow-2xl transition-colors duration-150 ease-in-out hover:text-white"
       >
         <span>settings</span> <ChevronDownIcon className="h-4" />
       </button>
-
+      {/* sidebar menue */}
       <div className="group absolute top-0 left-0 bottom-0">
         <button className="px-2 text-white transition-transform duration-150 ease-in-out group-hover:rotate-90">
           <EyeIcon className="h-6" />

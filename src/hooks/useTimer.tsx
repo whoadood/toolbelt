@@ -15,6 +15,7 @@ const UseTimer = (
     [pomodoro.pom]
   );
 
+  // if conditions are met countdown from current state variable
   useEffect(() => {
     let time: number | undefined;
     if (pomodoro.hasStarted) {
@@ -43,12 +44,14 @@ const UseTimer = (
     seconds,
   ]);
 
+  // if countdown timer is not running update seconds state, when pomodoro time variables are changed
   useEffect(() => {
     if (!pomodoro.hasStarted) {
       setSeconds(pomodoro.pom * 60);
     }
   }, [pomodoro.pom, pomodoro.short, pomodoro.long, pomodoro.hasStarted]);
 
+  // if conditions are met update seconds state variable to correct break time
   useEffect(() => {
     if (pomodoro.roundComplete) {
       if (pomodoro.isBreak) {

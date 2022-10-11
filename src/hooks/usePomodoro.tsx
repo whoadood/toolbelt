@@ -126,8 +126,10 @@ const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
     initialPomodoro
   );
 
+  // countdown logic
   const { seconds, resetTimer } = useTimer(
     pomodoro as Pomodoro,
+    // round complete callback
     () => {
       pomodoroDispatch({ type: "COMPLETE_ROUND" });
       if (pomodoro.activeTodo && !pomodoro.isBreak) {
@@ -139,11 +141,13 @@ const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
         pomodoroDispatch({ type: "END_BREAK" });
       }
     },
+    // break complete callback
     () => {
       pomodoroDispatch({ type: "START_ROUND" });
     }
   );
 
+  // convert seconds to stopwatch - mm:ss
   const time = {
     minutes: Math.floor((seconds / 60) % 60),
     seconds: seconds % 60,

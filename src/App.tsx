@@ -22,7 +22,9 @@ function App() {
     <div className="relative flex min-h-screen justify-end bg-gradient-to-r from-teal-500 via-indigo-500 to-purple-500 px-2 font-bold text-gray-100">
       <Header handleToggle={handleToggle} />
       <Settings toggle={toggle} handleToggle={handleToggle} />
+      {/* ************ dropzone ************ */}
       <div className="absolute top-6 right-0 left-0 bottom-0 bg-[url('/computerguy.gif')] bg-cover bg-center font-bold text-white ">
+        {/* ************ inspirational quotes ************ */}
         <Draggable
           title={
             <div className="rounded-t bg-fuchsia-600 p-2">Inspiration</div>
@@ -33,6 +35,7 @@ function App() {
         >
           <Inspiration />
         </Draggable>
+        {/* ************ pomodoro ************ */}
         <Draggable
           title={
             <div className="rounded-tl rounded-tr bg-indigo-500 p-2">
@@ -47,6 +50,7 @@ function App() {
         >
           <Pomodoro />
         </Draggable>
+        {/* ************ todo list ************ */}
         <Draggable
           startY={210}
           title={
@@ -62,6 +66,7 @@ function App() {
             ))}
           </div>
         </Draggable>
+        {/* ************ spotify ************ */}
         <Draggable
           startX={760}
           border={"border-green-900"}
