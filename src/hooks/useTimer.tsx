@@ -6,11 +6,14 @@ const UseTimer = (
   taskCompletedCallback: () => void,
   roundCompleteCallback: () => void
 ) => {
-  const [seconds, setSeconds] = useState(pomodoro.pom * 60);
+  const [seconds, setSeconds] = useState(0);
 
-  const resetTimer = useCallback(() => {
-    setSeconds(pomodoro.pom * 60);
-  }, [pomodoro.pom]);
+  const resetTimer = useCallback(
+    (pomodoro: Pomodoro) => {
+      setSeconds(pomodoro.pom * 60);
+    },
+    [pomodoro.pom]
+  );
 
   useEffect(() => {
     let time: number | undefined;
@@ -31,7 +34,20 @@ const UseTimer = (
         clearInterval(time);
       }
     };
-  }, [pomodoro.hasStarted, pomodoro.isPaused, seconds]);
+  }, [
+    pomodoro.hasStarted,
+    pomodoro.isPaused,
+    pomodoro.short,
+    pomodoro.long,
+    pomodoro.pom,
+    seconds,
+  ]);
+
+  useEffect(() => {
+    if (!pomodoro.hasStarted) {
+      setSeconds(pomodoro.pom * 60);
+    }
+  }, [pomodoro.pom, pomodoro.short, pomodoro.long, pomodoro.hasStarted]);
 
   useEffect(() => {
     if (pomodoro.roundComplete) {
@@ -48,7 +64,14 @@ const UseTimer = (
       }
       roundCompleteCallback();
     }
-  }, [pomodoro, seconds]);
+  }, [
+    pomodoro.pom,
+    pomodoro.short,
+    pomodoro.long,
+    pomodoro.isBreak,
+    pomodoro.roundComplete,
+    seconds,
+  ]);
 
   return { seconds, setSeconds, resetTimer };
 };

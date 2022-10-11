@@ -3,7 +3,7 @@ import { usePomodoro } from "../hooks/usePomodoro";
 export default function Pomodoro() {
   const { pomodoro, pomodoroDispatch, time, resetTimer } = usePomodoro();
   return (
-    <div className="flex min-h-[150px] min-w-[400px] flex-col gap-2 rounded-b p-2">
+    <div className="flex min-h-[150px] min-w-[360px] flex-col gap-2 rounded-b p-2">
       <h1
         className={`${
           !pomodoro?.isBreak && pomodoro?.hasStarted && !pomodoro.isPaused
@@ -41,7 +41,9 @@ export default function Pomodoro() {
           className="text-gray-400/50 transition-colors duration-150 ease-in-out hover:text-white"
           onClick={() => {
             pomodoroDispatch({ type: "RESET_ROUND" });
-            resetTimer();
+            if (pomodoro) {
+              resetTimer(pomodoro);
+            }
           }}
         >
           reset

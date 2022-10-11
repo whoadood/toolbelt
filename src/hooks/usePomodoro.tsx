@@ -23,7 +23,7 @@ const PomodoroContext = createContext<
         minutes: number;
         seconds: number;
       };
-      resetTimer: () => void;
+      resetTimer: (pomodoro: Pomodoro) => void;
     }
   | undefined
 >(undefined);
@@ -37,7 +37,14 @@ type REDUCER_ACTION_TYPE = {
     | "PAUSE_TIMER"
     | "UNPAUSE_TIMER"
     | "COMPLETE_ROUND"
-    | "UPDATE_ACTIVE";
+    | "UPDATE_ACTIVE"
+    | "INCREMENT_POMODORO"
+    | "DECREMENT_POMODORO"
+    | "INCREMENT_SHORT"
+    | "DECREMENT_SHORT"
+    | "INCREMENT_LONG"
+    | "DECREMENT_LONG"
+    | "INITIAL_POMODORO";
   value?: undefined;
 };
 
@@ -67,7 +74,12 @@ const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
       case "UNPAUSE_TIMER":
         return { ...state, isPaused: false };
       case "RESET_ROUND":
-        return initialPomodoro;
+        return {
+          ...initialPomodoro,
+          pom: state.pom,
+          short: state.short,
+          long: state.long,
+        };
       case "START_BREAK":
         if (state.breakCount > 3) {
           return { ...state, isBreak: true, breakCount: 0 };
@@ -78,6 +90,32 @@ const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
           ...state,
           isBreak: false,
         };
+      case "INCREMENT_POMODORO":
+        return { ...state, pom: state.pom === 60 ? state.pom : state.pom + 1 };
+      case "DECREMENT_POMODORO":
+        return { ...state, pom: state.pom === 1 ? state.pom : state.pom - 1 };
+      case "INCREMENT_SHORT":
+        return {
+          ...state,
+          short: state.short === 60 ? state.short : state.short + 1,
+        };
+      case "DECREMENT_SHORT":
+        return {
+          ...state,
+          short: state.short === 1 ? state.short : state.short - 1,
+        };
+      case "INCREMENT_LONG":
+        return {
+          ...state,
+          long: state.long === 60 ? state.long : state.long + 1,
+        };
+      case "DECREMENT_LONG":
+        return {
+          ...state,
+          long: state.long === 1 ? state.long : state.long - 1,
+        };
+      case "INITIAL_POMODORO":
+        return initialPomodoro;
       default:
         return initialPomodoro;
     }

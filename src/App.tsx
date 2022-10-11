@@ -9,16 +9,19 @@ import Pomodoro from "./components/Pomodoro";
 import { usePomodoro } from "./hooks/usePomodoro";
 import Inspiration from "./components/Inspiration";
 import Header from "./components/Header";
+import Settings from "./components/Settings";
+import useToggle from "./hooks/useToggle";
 
 function App() {
   const { todos } = useTodos();
   const { pomodoro } = usePomodoro();
-
+  const { toggle, handleToggle } = useToggle();
   const todoRef = useRef<HTMLInputElement>();
 
   return (
     <div className="relative flex min-h-screen justify-end bg-gradient-to-r from-teal-500 via-indigo-500 to-purple-500 px-2 font-bold text-gray-100">
-      <Header />
+      <Header handleToggle={handleToggle} />
+      <Settings toggle={toggle} handleToggle={handleToggle} />
       <div className="absolute top-6 right-0 left-0 bottom-0 bg-[url('/computerguy.gif')] bg-cover bg-center font-bold text-white ">
         <Draggable
           title={
@@ -53,7 +56,7 @@ function App() {
           }
           border={"border-purple-500"}
         >
-          <div className="flex min-h-[150px] min-w-[400px] flex-col gap-2 rounded-b p-2">
+          <div className="flex min-h-[150px] min-w-[360px] flex-col gap-2 rounded-b p-2">
             {todos.map((todo) => (
               <TodoItem key={todo.id} todo={todo} />
             ))}

@@ -45,14 +45,17 @@ const icons = [
     color: "border-green-900/50 hover:border-green-900",
   },
 ];
-export default function Header() {
+export default function Header({ handleToggle }: { handleToggle: () => void }) {
   const today = new Date();
   return (
     <header className="z-50 flex h-full w-full items-start justify-end shadow-lg">
       <span className="mx-auto">
         {months[today.getMonth()]} {today.getDate()}
       </span>
-      <button className="flex items-center text-gray-300 drop-shadow-2xl transition-colors duration-150 ease-in-out hover:text-white">
+      <button
+        onClick={handleToggle}
+        className="flex items-center text-gray-300 drop-shadow-2xl transition-colors duration-150 ease-in-out hover:text-white"
+      >
         <span>settings</span> <ChevronDownIcon className="h-4" />
       </button>
 
