@@ -11,7 +11,7 @@ export default function Settings({
   toggle: boolean;
   handleToggle: () => void;
 }) {
-  const { updateImage, backgroundImages } = useSettings();
+  const { activeImage, updateImage, backgroundImages } = useSettings();
   return (
     // Backdrop
     <div
@@ -34,16 +34,17 @@ export default function Settings({
         </div>
         {/* MENU */}
         <div className="h-[500px] rounded-b border border-amber-500 bg-gray-900/50 bg-opacity-60 bg-clip-padding p-2 backdrop-blur-sm backdrop-filter">
-          {/* MENU HEADING */}
-          <SettingsHeading title="Pomodoro" />
-          {/* MENU BODY */}
-          <PomodorMenu />
-          <ul className="flex items-center justify-start gap-2">
+          <SettingsHeading title="Background" />
+          <ul className="flex items-center justify-start gap-2 py-2">
             {backgroundImages.map((image) => (
               <li key={image.image}>
                 <button onClick={() => updateImage(image.image)}>
                   <img
-                    className="h-16 w-16"
+                    className={`h-16 w-16 transition-transform duration-150 ease-in-out hover:scale-105 ${
+                      activeImage === image.image
+                        ? "border-2 border-amber-500"
+                        : ""
+                    }`}
                     alt={image.title}
                     src={image.image}
                   />
@@ -51,6 +52,10 @@ export default function Settings({
               </li>
             ))}
           </ul>
+          {/* MENU HEADING */}
+          <SettingsHeading title="Pomodoro" />
+          {/* MENU BODY */}
+          <PomodorMenu />
         </div>
       </div>
     </div>
