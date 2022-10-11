@@ -15,13 +15,14 @@ const SpotifyTitle = () => {
         },
       ].map((playlist) => (
         <button
-          className={`flex  ${
+          className={`group flex flex-col ${
             spotifyActive === playlist.url ? "text-white" : "text-gray-400"
           }`}
           onClick={() => loadPlaylist(playlist.url)}
           key={playlist.text}
         >
           {playlist.text}
+          <div className="mx-auto w-0 border-b-2 border-gray-200/50 transition-all duration-300 ease-in-out group-hover:w-full" />
         </button>
       ))}
     </div>

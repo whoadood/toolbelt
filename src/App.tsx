@@ -35,8 +35,8 @@ function App() {
             <div className="rounded-tl rounded-tr bg-indigo-500 p-2">
               {pomodoro?.isBreak
                 ? pomodoro.breakCount > 3
-                  ? "Long Break"
-                  : "Short Break"
+                  ? `Long Break`
+                  : `Short Break ${pomodoro.breakCount}`
                 : "Pomodoro"}
             </div>
           }
