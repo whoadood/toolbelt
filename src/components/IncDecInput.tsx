@@ -10,7 +10,7 @@ export default function IncDecInput({
   subRound: () => void;
 }) {
   return (
-    <div className="ml-2 flex h-10 flex-row  rounded bg-black/50">
+    <div className="ml-1 flex h-10 flex-row  rounded bg-black/50">
       <button
         type="button"
         data-action="decrement"

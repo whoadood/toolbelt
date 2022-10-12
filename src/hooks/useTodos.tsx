@@ -11,7 +11,7 @@ const TodoContext = createContext<
 
 type REDUCER_ACTION_TYPE =
   | {
-      type: "ADD_TODO";
+      type: "ADD_TODO" | "EDIT_TODO";
       value: Todo;
     }
   | {
@@ -47,6 +47,10 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
           }
           return td;
         });
+      case "EDIT_TODO":
+        return state.map((td) =>
+          td.id === action.value.id ? action.value : td
+        );
       case "DELETE_TODO":
         return state.filter((td) => td.id !== action.value);
       case "RESET_TODOS":
