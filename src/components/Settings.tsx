@@ -32,8 +32,8 @@ export default function Settings({
             X
           </button>
         </div>
-        {/* MENU */}
-        <div className="h-[500px] rounded-b border border-amber-500 bg-gray-900/50 bg-opacity-60 bg-clip-padding p-2 backdrop-blur-sm backdrop-filter">
+        {/* MENU - fixed height 500px ? */}
+        <div className="rounded-b border border-amber-500 bg-gray-900/50 bg-opacity-60 bg-clip-padding p-2 backdrop-blur-sm backdrop-filter">
           <SettingsHeading title="Background" />
           <ul className="flex items-center justify-start gap-2 py-2">
             {backgroundImages.map((image) => (
