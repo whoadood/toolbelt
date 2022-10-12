@@ -75,7 +75,9 @@ export default function Draggable({
     >
       <div
         className={`cursor-grab shadow transition-transform duration-300 ease-in-out active:cursor-grabbing ${
-          visibility.toggle ? "scale-0 cursor-default" : "scale-100"
+          visibility.toggle
+            ? "rotate-[360deg] scale-0 cursor-default"
+            : "scale-100"
         }`}
       >
         <div className="shadow-b-lg shadow-black">{title}</div>
