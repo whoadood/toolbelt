@@ -8,6 +8,7 @@ import { SpotifyProvider } from "./hooks/useSpotify";
 import { PomodoroProvider } from "./hooks/usePomodoro";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { SettingsProvider } from "./hooks/useSettings";
+import { VisibilityProvider } from "./hooks/useWidget";
 
 const queryClient = new QueryClient();
 
@@ -19,7 +20,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <SpotifyProvider>
             <PomodoroProvider>
               <SettingsProvider>
-                <App />
+                <VisibilityProvider>
+                  <App />
+                </VisibilityProvider>
               </SettingsProvider>
             </PomodoroProvider>
           </SpotifyProvider>

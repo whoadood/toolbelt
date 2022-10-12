@@ -12,6 +12,7 @@ import Header from "./components/Header";
 import Settings from "./components/Settings";
 import useToggle from "./hooks/useToggle";
 import { useSettings } from "./hooks/useSettings";
+import { useWidget } from "./hooks/useWidget";
 
 function App() {
   const { todos } = useTodos();
@@ -19,6 +20,7 @@ function App() {
   const { toggle, handleToggle } = useToggle();
   const todoRef = useRef<HTMLInputElement>();
   const { activeImage } = useSettings();
+  const visibility = useWidget();
 
   return (
     <div className="relative flex min-h-screen justify-end bg-gradient-to-r from-teal-500 via-indigo-500 to-purple-500 px-2 font-bold text-gray-100">
@@ -31,6 +33,7 @@ function App() {
       >
         {/* ************ inspirational quotes ************ */}
         <Draggable
+          visibility={visibility.inspirationToggle}
           title={
             <div className="rounded-t bg-fuchsia-600 p-2">Inspiration</div>
           }
@@ -42,6 +45,7 @@ function App() {
         </Draggable>
         {/* ************ pomodoro ************ */}
         <Draggable
+          visibility={visibility.pomodoroToggle}
           title={
             <div className="rounded-tl rounded-tr bg-indigo-500 p-2">
               {pomodoro?.isBreak
@@ -57,6 +61,7 @@ function App() {
         </Draggable>
         {/* ************ todo list ************ */}
         <Draggable
+          visibility={visibility.todolistToggle}
           startY={210}
           title={
             <TodoTitle
@@ -73,6 +78,7 @@ function App() {
         </Draggable>
         {/* ************ spotify ************ */}
         <Draggable
+          visibility={visibility.spotifyToggle}
           startX={760}
           border={"border-green-900"}
           title={<SpotifyTitle />}
