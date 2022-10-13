@@ -46,7 +46,7 @@ export default function ControlledTodoInput({
           handleToggle();
         }
       }}
-      onBlur={(e) => handleSubmit(e)}
+      // onBlur={(e) => handleSubmit(e)}
       className="flex"
       onSubmit={handleSubmit}
     >

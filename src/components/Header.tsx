@@ -55,7 +55,7 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
       icon: <ChatBubbleLeftEllipsisIcon className="z-10 h-6" />,
       color: "fuchsia-600",
       active:
-        window.innerWidth < 800
+        window.innerWidth <= 810
           ? !visibility.inspirationToggle.toggle
           : visibility.inspirationToggle.toggle,
       toggler: visibility.inspirationToggle.handleToggle,
@@ -71,7 +71,10 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
       id: "spotify",
       icon: <MusicalNoteIcon className="z-10 h-6" />,
       color: "green-900",
-      active: visibility.spotifyToggle.toggle,
+      active:
+        window.innerWidth <= 810
+          ? !visibility.spotifyToggle.toggle
+          : visibility.spotifyToggle.toggle,
       toggler: visibility.spotifyToggle.handleToggle,
     },
   ];

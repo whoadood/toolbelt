@@ -27,20 +27,20 @@ const initialNotes: Note[] = [
   {
     id: "note1",
     text: "checkout the toggle menu in the upper left hand corner",
-    startX: window.innerWidth < 800 ? 60 : 40,
+    startX: window.innerWidth <= 810 ? 60 : 40,
     startY: 10,
   },
   {
     id: "note2",
     text: "paste a spotify playlist url slug, click the chevron to explore songs within a playlist",
-    startX: window.innerWidth < 800 ? 60 : 720,
-    startY: window.innerWidth < 800 ? 10 : 400,
+    startX: window.innerWidth <= 810 ? 60 : 720,
+    startY: window.innerWidth <= 810 ? 10 : 400,
   },
   {
     id: "note3",
     text: "customize your settings in the upper right hand corner",
-    startX: window.innerWidth < 800 ? 60 : 720,
-    startY: window.innerWidth < 800 ? 10 : 10,
+    startX: window.innerWidth <= 810 ? 60 : 720,
+    startY: window.innerWidth <= 810 ? 10 : 10,
   },
 ];
 
