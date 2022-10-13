@@ -26,7 +26,7 @@ type REDUCER_ACTION_TYPE =
 const initialNotes: Note[] = [
   {
     id: "note1",
-    text: "checkout the toggle menu",
+    text: "checkout the toggle menu in the upper left hand corner",
     startX: 40,
     startY: 10,
   },
@@ -34,7 +34,13 @@ const initialNotes: Note[] = [
     id: "note2",
     text: "paste a spotify playlist url slug",
     startX: 720,
-    startY: 210,
+    startY: 410,
+  },
+  {
+    id: "note3",
+    text: "customize your settings in the upper right hand corner",
+    startX: 720,
+    startY: 10,
   },
 ];
 
