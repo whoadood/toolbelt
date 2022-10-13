@@ -50,6 +50,9 @@ function App() {
                     onClick={() =>
                       notesDispatch({ type: "DELETE_NOTE", value: note.id })
                     }
+                    onTouchEnd={() =>
+                      notesDispatch({ type: "DELETE_NOTE", value: note.id })
+                    }
                     className={"text-white"}
                   >
                     <TrashIcon className="h-6" />
