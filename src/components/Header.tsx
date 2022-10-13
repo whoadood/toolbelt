@@ -76,19 +76,19 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
         <span>settings</span> <ChevronDownIcon className="h-4" />
       </button>
       {/* ********** sidebar menu container ********** */}
-      <div className="group absolute top-0 left-0 bottom-0">
+      <div className="group absolute top-0 bottom-0 -left-14 sm:left-0">
         <button
           onClick={visibiltyMenuToggle}
           className={`${
             visibilityMenuActive ? "rotate-90" : ""
-          } px-2 text-white transition-transform duration-150 ease-in-out group-hover:rotate-90 `}
+          }  translate-x-16 px-2 text-white transition-transform duration-150 ease-in-out group-hover:rotate-90 sm:translate-x-0`}
         >
           <EyeIcon className="h-6" />
         </button>
         {/* ********** menu ********** */}
         <ul
           className={`-translate-x-full ${
-            visibilityMenuActive ? "translate-x-0" : ""
+            visibilityMenuActive ? " translate-x-full sm:translate-x-0" : ""
           } flex flex-col gap-2 rounded border-2 border-teal-500 bg-opacity-60 bg-clip-padding p-2 text-white backdrop-blur-sm backdrop-filter transition-transform duration-150 ease-in-out group-hover:translate-x-0`}
         >
           {icons.map((icon) => (
