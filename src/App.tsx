@@ -93,8 +93,8 @@ function App() {
         {/* ************ pomodoro ************ */}
         {!visibility.pomodoroToggle.toggle && (
           <Draggable
-            startX={window.innerWidth <= 810 ? 8 : undefined}
-            startY={window.innerWidth <= 810 ? 210 : undefined}
+            startX={window.innerWidth < 810 ? 8 : undefined}
+            startY={window.innerWidth < 810 ? 210 : undefined}
             title={
               <div className="rounded-tl rounded-tr bg-indigo-500 p-2">
                 {pomodoro?.isBreak
@@ -112,8 +112,8 @@ function App() {
         {/* ************ todo list ************ */}
         {!visibility.todolistToggle.toggle && (
           <Draggable
-            startY={window.innerWidth <= 810 ? 410 : 210}
-            startX={window.innerWidth <= 810 ? 8 : undefined}
+            startY={window.innerWidth < 810 ? 410 : 210}
+            startX={window.innerWidth < 810 ? 8 : undefined}
             title={
               <TodoTitle
                 todoRef={todoRef as MutableRefObject<HTMLInputElement>}
@@ -131,8 +131,8 @@ function App() {
         {/* ************ spotify ************ */}
         {window.innerWidth < 800 && visibility.spotifyToggle.toggle && (
           <Draggable
-            startX={window.innerWidth <= 810 ? 60 : 720}
-            startY={window.innerWidth <= 810 ? 10 : 200}
+            startX={window.innerWidth < 810 ? 60 : 720}
+            startY={window.innerWidth < 810 ? 10 : 200}
             border={"border-green-900"}
             title={<SpotifyTitle />}
           >
@@ -143,14 +143,14 @@ function App() {
           <Draggable
             startX={
               window.innerWidth < 1030
-                ? window.innerWidth <= 810
+                ? window.innerWidth < 810
                   ? 60
                   : 375
                 : 720
             }
             startY={
               window.innerWidth < 1030
-                ? window.innerWidth <= 810
+                ? window.innerWidth < 810
                   ? 10
                   : 490
                 : 200
