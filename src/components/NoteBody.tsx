@@ -19,7 +19,7 @@ export default function NoteBody({ note }: { note: Note }) {
             });
           }
         }}
-        rows={3}
+        rows={4}
         onChange={(e) => {
           setNoteInput(e.currentTarget.value);
         }}

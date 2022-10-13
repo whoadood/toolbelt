@@ -70,7 +70,7 @@ function App() {
           }
           border={"border-fuchsia-500"}
           startX={40}
-          startY={170}
+          startY={200}
         >
           <Inspiration />
         </Draggable>
@@ -111,7 +111,7 @@ function App() {
         <Draggable
           visibility={visibility.spotifyToggle}
           startX={720}
-          startY={170}
+          startY={200}
           border={"border-green-900"}
           title={<SpotifyTitle />}
         >

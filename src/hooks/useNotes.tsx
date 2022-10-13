@@ -34,7 +34,7 @@ const initialNotes: Note[] = [
     id: "note2",
     text: "paste a spotify playlist url slug, click the chevron to explore songs within a playlist",
     startX: 720,
-    startY: 370,
+    startY: 400,
   },
   {
     id: "note3",
