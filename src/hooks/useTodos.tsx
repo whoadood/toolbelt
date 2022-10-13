@@ -23,7 +23,29 @@ type REDUCER_ACTION_TYPE =
       value: undefined;
     };
 
-const initialTodos: Todo[] = [];
+const initialTodos: Todo[] = [
+  {
+    id: "todo1",
+    text: "Delete this",
+    currentRound: 3,
+    totalRounds: 3,
+    complete: true,
+  },
+  {
+    id: "todo2",
+    text: "Complete this",
+    currentRound: 2,
+    totalRounds: 3,
+    complete: false,
+  },
+  {
+    id: "todo3",
+    text: "Keep this",
+    currentRound: 0,
+    totalRounds: 1,
+    complete: false,
+  },
+];
 
 const TodoProvider = ({ children }: { children: React.ReactNode }) => {
   const todoReducer = (state = initialTodos, action: REDUCER_ACTION_TYPE) => {
