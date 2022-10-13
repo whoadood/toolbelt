@@ -141,8 +141,20 @@ function App() {
         )}
         {window.innerWidth >= 800 && !visibility.spotifyToggle.toggle && (
           <Draggable
-            startX={window.innerWidth <= 810 ? 60 : 720}
-            startY={window.innerWidth <= 810 ? 10 : 200}
+            startX={
+              window.innerWidth < 1030
+                ? window.innerWidth <= 810
+                  ? 60
+                  : 375
+                : 720
+            }
+            startY={
+              window.innerWidth < 1030
+                ? window.innerWidth <= 810
+                  ? 10
+                  : 490
+                : 200
+            }
             border={"border-green-900"}
             title={<SpotifyTitle />}
           >
