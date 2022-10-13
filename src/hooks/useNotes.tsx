@@ -33,7 +33,7 @@ const initialNotes: Note[] = [
   {
     id: "note2",
     text: "paste a spotify playlist url slug",
-    startX: 760,
+    startX: 720,
     startY: 210,
   },
 ];
