@@ -9,6 +9,7 @@ import { PomodoroProvider } from "./hooks/usePomodoro";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { SettingsProvider } from "./hooks/useSettings";
 import { VisibilityProvider } from "./hooks/useWidget";
+import { NoteProvider } from "./hooks/useNotes";
 
 const queryClient = new QueryClient();
 
@@ -19,11 +20,13 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <InputTodoProvider>
           <SpotifyProvider>
             <PomodoroProvider>
-              <SettingsProvider>
-                <VisibilityProvider>
-                  <App />
-                </VisibilityProvider>
-              </SettingsProvider>
+              <NoteProvider>
+                <SettingsProvider>
+                  <VisibilityProvider>
+                    <App />
+                  </VisibilityProvider>
+                </SettingsProvider>
+              </NoteProvider>
             </PomodoroProvider>
           </SpotifyProvider>
         </InputTodoProvider>

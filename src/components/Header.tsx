@@ -8,9 +8,11 @@ import {
   ChatBubbleLeftEllipsisIcon,
 } from "@heroicons/react/24/outline";
 import React, { useRef } from "react";
+import { useNotes } from "../hooks/useNotes";
 import useTodoRounds from "../hooks/useTodoRounds";
 import useToggle from "../hooks/useToggle";
 import { useWidget } from "../hooks/useWidget";
+import uuid from "react-uuid";
 
 const months = [
   "Jan",
@@ -29,9 +31,18 @@ const months = [
 export default function Header({ handleToggle }: { handleToggle: () => void }) {
   const today = new Date();
   const visibility = useWidget();
+  const { notesDispatch } = useNotes();
   const { toggle: visibilityMenuActive, handleToggle: visibiltyMenuToggle } =
     useToggle();
   const icons = [
+    {
+      id: "notes",
+      icon: <DocumentTextIcon className="z-10 h-6" />,
+      color: "amber-500",
+      active: false,
+      toggler: () =>
+        notesDispatch({ type: "ADD_NOTE", value: { id: uuid(), text: "" } }),
+    },
     {
       id: "pomodoro",
       icon: <ClockIcon className="z-10 h-6" />,
@@ -62,7 +73,7 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
     },
   ];
   return (
-    <header className="z-50 flex h-full w-full items-start justify-end shadow-lg">
+    <header className="bg- z-50 flex h-full w-full items-start justify-end shadow-lg">
       {/* ********** clock ********** */}
       <span className="mx-auto">
         {months[today.getMonth()]} {today.getDate()} {today.getHours()}:
