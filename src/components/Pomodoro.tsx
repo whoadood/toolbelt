@@ -20,8 +20,15 @@ export default function Pomodoro() {
       <div className="flex items-center justify-around">
         <button
           disabled={pomodoro?.hasStarted && !pomodoro?.isPaused}
-          className={`text-gray-400/50 transition-colors duration-150 ease-in-out hover:text-white disabled:text-gray-400/50`}
-          onClick={() => {
+          className={`z-50 text-gray-400/50 transition-colors duration-150 ease-in-out hover:text-white disabled:text-gray-400/50`}
+          // for mobile
+          // onTouchEnd={(e) => {
+          //   if (!pomodoro?.hasStarted) {
+          //     pomodoroDispatch({ type: "START_ROUND" });
+          //   }
+          //   pomodoroDispatch({ type: "UNPAUSE_TIMER" });
+          // }}
+          onClick={(e) => {
             if (!pomodoro?.hasStarted) {
               pomodoroDispatch({ type: "START_ROUND" });
             }

@@ -60,8 +60,10 @@ export default function TodoTitle({
         </form>
       ) : (
         <button
-          className="rounded-full p-2 transition-colors duration-150 hover:bg-slate-700/50"
-          onClick={handleToggle}
+          className="cursor-pointer rounded-full p-2 transition-colors duration-150 hover:bg-slate-700/50"
+          onClick={(e) => {
+            handleToggle();
+          }}
         >
           <PlusIcon className="h-6" />
         </button>
