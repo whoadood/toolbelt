@@ -6,7 +6,7 @@ export default function NoteBody({ note }: { note: Note }) {
   const [noteInput, setNoteInput] = useState(note.text);
   const { notesDispatch } = useNotes();
   return (
-    <div className="min-h-[150px] min-w-[300px] p-2">
+    <div className="min-h-[100px] min-w-[300px] p-2">
       <textarea
         onBlur={(e) => {
           if (noteInput !== note.text) {
