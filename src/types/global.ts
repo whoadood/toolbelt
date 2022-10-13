@@ -42,3 +42,7 @@ export type Wow = {
   };
   audio: string;
 };
+export type Note = {
+  id: string;
+  text: string;
+};
