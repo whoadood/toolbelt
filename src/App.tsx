@@ -13,14 +13,19 @@ import Settings from "./components/Settings";
 import useToggle from "./hooks/useToggle";
 import { useSettings } from "./hooks/useSettings";
 import { useWidget } from "./hooks/useWidget";
+import { useNotes } from "./hooks/useNotes";
+import NoteBody from "./components/NoteBody";
+import { TrashIcon } from "@heroicons/react/24/outline";
 
 function App() {
   const { todos } = useTodos();
   const { pomodoro } = usePomodoro();
+  const { notes, notesDispatch } = useNotes();
   const { toggle, handleToggle } = useToggle();
   const todoRef = useRef<HTMLInputElement>();
   const { activeImage } = useSettings();
   const visibility = useWidget();
+  console.log("notes app", notes);
 
   return (
     <div className="relative flex min-h-screen justify-end bg-gradient-to-r from-teal-500 via-indigo-500 to-purple-500 px-2 font-bold text-gray-100">
@@ -31,6 +36,32 @@ function App() {
         style={{ backgroundImage: `url('${activeImage}')` }}
         className={`absolute top-6 right-0 left-0 bottom-0 bg-cover bg-center font-bold text-white `}
       >
+        {/* ************ notes ************ */}
+        <>
+          {notes.map((note) => (
+            <Draggable
+              border="border-amber-500"
+              startX={note.startX}
+              startY={note.startY}
+              title={
+                <div className="flex justify-between rounded-t bg-amber-500 p-2">
+                  <p>Notes</p>
+                  <button
+                    onClick={() =>
+                      notesDispatch({ type: "DELETE_NOTE", value: note.id })
+                    }
+                    className={"text-white"}
+                  >
+                    <TrashIcon className="h-6" />
+                  </button>
+                </div>
+              }
+              key={note.id}
+            >
+              <NoteBody note={note} />
+            </Draggable>
+          ))}
+        </>
         {/* ************ inspirational quotes ************ */}
         <Draggable
           visibility={visibility.inspirationToggle}

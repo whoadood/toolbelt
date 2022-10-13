@@ -7,9 +7,7 @@ import {
   QueueListIcon,
   ChatBubbleLeftEllipsisIcon,
 } from "@heroicons/react/24/outline";
-import React, { useRef } from "react";
 import { useNotes } from "../hooks/useNotes";
-import useTodoRounds from "../hooks/useTodoRounds";
 import useToggle from "../hooks/useToggle";
 import { useWidget } from "../hooks/useWidget";
 import uuid from "react-uuid";
@@ -40,8 +38,10 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
       icon: <DocumentTextIcon className="z-10 h-6" />,
       color: "amber-500",
       active: false,
-      toggler: () =>
-        notesDispatch({ type: "ADD_NOTE", value: { id: uuid(), text: "" } }),
+      toggler: () => {
+        console.log("notes dispatch add note");
+        notesDispatch({ type: "ADD_NOTE", value: { id: uuid(), text: "" } });
+      },
     },
     {
       id: "pomodoro",

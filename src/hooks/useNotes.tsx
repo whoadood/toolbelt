@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useRef } from "react";
 import { Note } from "../types/global";
 
 const NoteContext = createContext<
@@ -23,12 +23,26 @@ type REDUCER_ACTION_TYPE =
       value: undefined;
     };
 
-const initialNotes: Note[] = [];
+const initialNotes: Note[] = [
+  {
+    id: "note1",
+    text: "checkout the toggle menu",
+    startX: 40,
+    startY: 10,
+  },
+  {
+    id: "note2",
+    text: "paste a spotify playlist url slug",
+    startX: 760,
+    startY: 210,
+  },
+];
 
 const NoteProvider = ({ children }: { children: React.ReactNode }) => {
   const noteReducer = (state = initialNotes, action: REDUCER_ACTION_TYPE) => {
     switch (action.type) {
       case "ADD_NOTE":
+        console.log("add note reducer");
         return [...state, action.value];
       case "EDIT_NOTE":
         return state.map((td) =>

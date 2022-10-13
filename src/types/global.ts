@@ -45,4 +45,6 @@ export type Wow = {
 export type Note = {
   id: string;
   text: string;
+  startX?: number;
+  startY?: number;
 };

@@ -11,7 +11,7 @@ export default function Draggable({
   visibility,
 }: {
   startX?: number;
-  visibility: {
+  visibility?: {
     toggle: boolean;
     handleToggle: () => void;
   };
@@ -65,7 +65,7 @@ export default function Draggable({
       }}
       onDragStop={onDragStop}
       position={position}
-      disableDragging={visibility.toggle}
+      disableDragging={visibility?.toggle}
       default={{
         x: 0,
         y: 0,
@@ -75,7 +75,7 @@ export default function Draggable({
     >
       <div
         className={`cursor-grab shadow transition-transform duration-300 ease-in-out active:cursor-grabbing ${
-          visibility.toggle
+          visibility?.toggle
             ? "rotate-[360deg] scale-0 cursor-default"
             : "scale-100"
         }`}
