@@ -61,6 +61,7 @@ export default function TodoItem({ todo }: { todo: Todo }) {
             <button
               className="cursor-pointer rounded-full p-2 text-gray-200/20 transition-colors duration-150 hover:bg-black/50  hover:text-white"
               onClick={handleToggle}
+              onTouchEnd={handleToggle}
             >
               {<EllipsisVerticalIcon className="h-6" />}
             </button>

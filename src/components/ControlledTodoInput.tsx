@@ -21,7 +21,11 @@ export default function ControlledTodoInput({
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.currentTarget.value);
   }, []);
-  const handleSubmit = (e: React.KeyboardEvent<HTMLFormElement>) => {
+  const handleSubmit = (
+    e:
+      | React.KeyboardEvent<HTMLFormElement>
+      | React.FocusEvent<HTMLFormElement, Element>
+  ) => {
     e.preventDefault();
     todosDispatch({
       type: "EDIT_TODO",
@@ -42,6 +46,7 @@ export default function ControlledTodoInput({
           handleToggle();
         }
       }}
+      onBlur={(e) => handleSubmit(e)}
       className="flex"
       onSubmit={handleSubmit}
     >
