@@ -54,7 +54,10 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
       id: "inspiration",
       icon: <ChatBubbleLeftEllipsisIcon className="z-10 h-6" />,
       color: "fuchsia-600",
-      active: visibility.inspirationToggle.toggle,
+      active:
+        window.innerWidth < 800
+          ? !visibility.inspirationToggle.toggle
+          : visibility.inspirationToggle.toggle,
       toggler: visibility.inspirationToggle.handleToggle,
     },
     {

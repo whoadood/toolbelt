@@ -39,6 +39,7 @@ export default function TodoTitle({
     <div className="rounded-t bg-purple-500 p-2">
       {inputToggle ? (
         <form
+          onBlur={handleToggle}
           className="flex-no-wrap flex"
           onSubmit={handleSubmit}
           onKeyDown={(e) => {
@@ -61,9 +62,8 @@ export default function TodoTitle({
       ) : (
         <button
           className="cursor-pointer rounded-full p-2 transition-colors duration-150 hover:bg-slate-700/50"
-          onClick={(e) => {
-            handleToggle();
-          }}
+          onClick={handleToggle}
+          onTouchEnd={handleToggle}
         >
           <PlusIcon className="h-6" />
         </button>

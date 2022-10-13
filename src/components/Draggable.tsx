@@ -8,13 +8,9 @@ export default function Draggable({
   children,
   title,
   border,
-  visibility,
 }: {
   startX?: number;
-  visibility?: {
-    toggle: boolean;
-    handleToggle: () => void;
-  };
+
   startY?: number;
   children: React.ReactNode;
   title: React.ReactNode;
@@ -65,7 +61,6 @@ export default function Draggable({
       }}
       onDragStop={onDragStop}
       position={position}
-      disableDragging={visibility?.toggle}
       default={{
         x: 0,
         y: 0,
@@ -74,11 +69,7 @@ export default function Draggable({
       }}
     >
       <div
-        className={`cursor-grab shadow transition-transform duration-300 ease-in-out active:cursor-grabbing ${
-          visibility?.toggle
-            ? "rotate-[360deg] scale-0 cursor-default"
-            : "scale-100"
-        }`}
+        className={`cursor-grab shadow transition-transform duration-300 ease-in-out active:cursor-grabbing`}
       >
         <div className="shadow-b-lg shadow-black">{title}</div>
         <div

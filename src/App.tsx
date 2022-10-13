@@ -63,60 +63,89 @@ function App() {
           ))}
         </>
         {/* ************ inspirational quotes ************ */}
-        <Draggable
-          visibility={visibility.inspirationToggle}
-          title={
-            <div className="rounded-t bg-fuchsia-600 p-2">Inspiration</div>
-          }
-          border={"border-fuchsia-500"}
-          startX={40}
-          startY={200}
-        >
-          <Inspiration />
-        </Draggable>
+        {window.innerWidth < 800 && visibility.inspirationToggle.toggle && (
+          <Draggable
+            title={
+              <div className="rounded-t bg-fuchsia-600 p-2">Inspiration</div>
+            }
+            border={"border-fuchsia-500"}
+            startX={40}
+            startY={10}
+          >
+            <Inspiration />
+          </Draggable>
+        )}
+        {window.innerWidth >= 800 && !visibility.inspirationToggle.toggle && (
+          <Draggable
+            title={
+              <div className="rounded-t bg-fuchsia-600 p-2">Inspiration</div>
+            }
+            border={"border-fuchsia-500"}
+            startX={40}
+            startY={200}
+          >
+            <Inspiration />
+          </Draggable>
+        )}
         {/* ************ pomodoro ************ */}
-        <Draggable
-          visibility={visibility.pomodoroToggle}
-          title={
-            <div className="rounded-tl rounded-tr bg-indigo-500 p-2">
-              {pomodoro?.isBreak
-                ? pomodoro.breakCount > 3
-                  ? `Long Break`
-                  : `Short Break ${pomodoro.breakCount}`
-                : "Pomodoro"}
-            </div>
-          }
-          border={"border-indigo-500"}
-        >
-          <Pomodoro />
-        </Draggable>
+        {!visibility.pomodoroToggle.toggle && (
+          <Draggable
+            startX={window.innerWidth < 800 ? 8 : undefined}
+            startY={window.innerWidth < 800 ? 210 : undefined}
+            title={
+              <div className="rounded-tl rounded-tr bg-indigo-500 p-2">
+                {pomodoro?.isBreak
+                  ? pomodoro.breakCount > 3
+                    ? `Long Break`
+                    : `Short Break ${pomodoro.breakCount}`
+                  : "Pomodoro"}
+              </div>
+            }
+            border={"border-indigo-500"}
+          >
+            <Pomodoro />
+          </Draggable>
+        )}
         {/* ************ todo list ************ */}
-        <Draggable
-          visibility={visibility.todolistToggle}
-          startY={210}
-          title={
-            <TodoTitle
-              todoRef={todoRef as MutableRefObject<HTMLInputElement>}
-            />
-          }
-          border={"border-purple-500"}
-        >
-          <div className="flex min-h-[150px] min-w-[360px] flex-col gap-2 rounded-b p-2">
-            {todos.map((todo) => (
-              <TodoItem key={todo.id} todo={todo} />
-            ))}
-          </div>
-        </Draggable>
+        {!visibility.todolistToggle.toggle && (
+          <Draggable
+            startY={window.innerWidth < 800 ? 410 : 210}
+            startX={window.innerWidth < 800 ? 8 : undefined}
+            title={
+              <TodoTitle
+                todoRef={todoRef as MutableRefObject<HTMLInputElement>}
+              />
+            }
+            border={"border-purple-500"}
+          >
+            <div className="flex min-h-[150px] min-w-[360px] flex-col gap-2 rounded-b p-2">
+              {todos.map((todo) => (
+                <TodoItem key={todo.id} todo={todo} />
+              ))}
+            </div>
+          </Draggable>
+        )}
         {/* ************ spotify ************ */}
-        <Draggable
-          visibility={visibility.spotifyToggle}
-          startX={720}
-          startY={200}
-          border={"border-green-900"}
-          title={<SpotifyTitle />}
-        >
-          <Spotify />
-        </Draggable>
+        {window.innerWidth < 800 && visibility.spotifyToggle.toggle && (
+          <Draggable
+            startX={window.innerWidth < 800 ? 60 : 720}
+            startY={window.innerWidth < 800 ? 10 : 200}
+            border={"border-green-900"}
+            title={<SpotifyTitle />}
+          >
+            <Spotify />
+          </Draggable>
+        )}
+        {window.innerWidth >= 800 && !visibility.spotifyToggle.toggle && (
+          <Draggable
+            startX={window.innerWidth < 800 ? 60 : 720}
+            startY={window.innerWidth < 800 ? 10 : 200}
+            border={"border-green-900"}
+            title={<SpotifyTitle />}
+          >
+            <Spotify />
+          </Draggable>
+        )}
       </div>
     </div>
   );

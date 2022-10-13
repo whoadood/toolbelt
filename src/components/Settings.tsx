@@ -26,14 +26,14 @@ export default function Settings({
         } rounded transition-all delay-150 duration-150 ease-in-out`}
       >
         {/* MODAL HEADING */}
-        <div className="flex justify-between rounded-t bg-amber-500">
+        <div className="flex justify-between rounded-t bg-rose-500">
           <p className="p-2">Settings</p>
           <button className="p-2" onClick={handleToggle}>
             X
           </button>
         </div>
         {/* MENU - fixed height 500px ? */}
-        <div className="rounded-b border border-amber-500 bg-gray-900/50 bg-opacity-60 bg-clip-padding p-2 backdrop-blur-sm backdrop-filter">
+        <div className="rounded-b border border-rose-500 bg-gray-900/50 bg-opacity-60 bg-clip-padding p-2 backdrop-blur-sm backdrop-filter">
           <SettingsHeading title="Background" />
           <ul className="flex items-center justify-start gap-2 py-2">
             {backgroundImages.map((image) => (
@@ -42,7 +42,7 @@ export default function Settings({
                   <img
                     className={`h-16 w-16 transition-transform duration-150 ease-in-out hover:scale-105 ${
                       activeImage === image.image
-                        ? "border-2 border-amber-500"
+                        ? "border-2 border-rose-500"
                         : ""
                     }`}
                     alt={image.title}
