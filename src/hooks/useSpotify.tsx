@@ -5,11 +5,16 @@ const SpotifyContext = createContext<
   | undefined
 >(undefined);
 
+const storage = localStorage.getItem("playlist");
+
 const SpotifyProvider = ({ children }: { children: React.ReactNode }) => {
-  const [spotifyActive, setSpotifyActive] = useState("0vvXsWCC9xrXsKd4FyS8kM");
+  const [spotifyActive, setSpotifyActive] = useState(
+    storage ? storage : "0vvXsWCC9xrXsKd4FyS8kM"
+  );
 
   const loadPlaylist = (playlist: string) => {
     setSpotifyActive(playlist);
+    localStorage.setItem("playlist", playlist);
   };
 
   return (
