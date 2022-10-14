@@ -8,10 +8,13 @@ const VolumeContext = createContext<
   | undefined
 >(undefined);
 
+const storage = localStorage.getItem("volume");
+
 const VolumeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [volume, setVolume] = useState(50);
+  const [volume, setVolume] = useState(storage ? +storage : 50);
   const handleVolume = useCallback((vol: number) => {
     setVolume(vol);
+    localStorage.setItem("volume", "" + vol);
   }, []);
 
   const data = {
