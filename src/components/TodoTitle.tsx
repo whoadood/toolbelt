@@ -39,7 +39,6 @@ export default function TodoTitle({
     <div className="rounded-t bg-purple-500 p-2">
       {inputToggle ? (
         <form
-          onBlur={handleToggle}
           className="flex-no-wrap flex"
           onSubmit={handleSubmit}
           onKeyDown={(e) => {
