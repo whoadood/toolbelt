@@ -48,7 +48,6 @@ const NoteProvider = ({ children }: { children: React.ReactNode }) => {
   const noteReducer = (state = initialNotes, action: REDUCER_ACTION_TYPE) => {
     switch (action.type) {
       case "ADD_NOTE":
-        console.log("add note reducer");
         return [...state, action.value];
       case "EDIT_NOTE":
         return state.map((td) =>

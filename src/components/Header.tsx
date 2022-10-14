@@ -39,7 +39,6 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
       color: "amber-500",
       active: false,
       toggler: () => {
-        console.log("notes dispatch add note");
         notesDispatch({ type: "ADD_NOTE", value: { id: uuid(), text: "" } });
       },
     },
@@ -55,7 +54,7 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
       icon: <ChatBubbleLeftEllipsisIcon className="z-10 h-6" />,
       color: "fuchsia-600",
       active:
-        window.innerWidth <= 810
+        window.innerWidth < 810
           ? !visibility.inspirationToggle.toggle
           : visibility.inspirationToggle.toggle,
       toggler: visibility.inspirationToggle.handleToggle,
@@ -72,14 +71,14 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
       icon: <MusicalNoteIcon className="z-10 h-6" />,
       color: "green-900",
       active:
-        window.innerWidth <= 810
+        window.innerWidth < 810
           ? !visibility.spotifyToggle.toggle
           : visibility.spotifyToggle.toggle,
       toggler: visibility.spotifyToggle.handleToggle,
     },
   ];
   return (
-    <header className="bg- z-50 flex h-full w-full items-start justify-end shadow-lg">
+    <header className=" z-50 flex h-full w-full items-start justify-end shadow-lg">
       {/* ********** clock ********** */}
       <span className="mx-auto">
         {months[today.getMonth()]} {today.getDate()} {today.getHours()}:
