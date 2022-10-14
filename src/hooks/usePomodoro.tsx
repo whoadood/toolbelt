@@ -6,10 +6,12 @@ import useOwen from "../hooks/useOwen";
 import { useSettings } from "./useSettings";
 import { useVolume } from "./useVolume";
 
+const storage = localStorage.getItem("pomodoro-obj");
+
 const initialPomodoro: Pomodoro = {
-  pom: 25,
-  short: 5,
-  long: 15,
+  pom: storage ? JSON.parse(storage).pom : 25,
+  short: storage ? JSON.parse(storage).short : 5,
+  long: storage ? JSON.parse(storage).long : 15,
   hasStarted: false,
   isBreak: false,
   isPaused: false,
@@ -96,30 +98,49 @@ const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
           isBreak: false,
         };
       case "INCREMENT_POMODORO":
-        return { ...state, pom: state.pom === 60 ? state.pom : state.pom + 1 };
+        const inc = {
+          ...state,
+          pom: state.pom === 60 ? state.pom : state.pom + 1,
+        };
+        localStorage.setItem("pomodoro-obj", JSON.stringify(inc));
+        return inc;
       case "DECREMENT_POMODORO":
-        return { ...state, pom: state.pom === 1 ? state.pom : state.pom - 1 };
+        const dec = {
+          ...state,
+          pom: state.pom === 1 ? state.pom : state.pom - 1,
+        };
+        localStorage.setItem("pomodoro-obj", JSON.stringify(dec));
+        return dec;
       case "INCREMENT_SHORT":
-        return {
+        const shortInc = {
           ...state,
           short: state.short === 60 ? state.short : state.short + 1,
         };
+        localStorage.setItem("pomodoro-obj", JSON.stringify(shortInc));
+        return shortInc;
       case "DECREMENT_SHORT":
-        return {
+        const shortDec = {
           ...state,
           short: state.short === 1 ? state.short : state.short - 1,
         };
+        localStorage.setItem("pomodoro-obj", JSON.stringify(shortDec));
+        return shortDec;
       case "INCREMENT_LONG":
-        return {
+        const longInc = {
           ...state,
           long: state.long === 60 ? state.long : state.long + 1,
         };
+        localStorage.setItem("pomodoro-obj", JSON.stringify(longInc));
+        return longInc;
       case "DECREMENT_LONG":
-        return {
+        const longDec = {
           ...state,
           long: state.long === 1 ? state.long : state.long - 1,
         };
+        localStorage.setItem("pomodoro-obj", JSON.stringify(longDec));
+        return longDec;
       case "INITIAL_POMODORO":
+        localStorage.setItem("pomodoro-obj", JSON.stringify(initialPomodoro));
         return initialPomodoro;
       default:
         return initialPomodoro;
