@@ -49,7 +49,7 @@ const NoteProvider = ({ children }: { children: React.ReactNode }) => {
   const noteReducer = (state = initialNotes, action: REDUCER_ACTION_TYPE) => {
     switch (action.type) {
       case "ADD_NOTE":
-        const newNotes = [...state, action.value];
+        const newNotes = [...state, { ...action.value, startX: 40 }];
         localStorage.setItem("notes-list", JSON.stringify(newNotes));
         return newNotes;
       case "EDIT_NOTE":
