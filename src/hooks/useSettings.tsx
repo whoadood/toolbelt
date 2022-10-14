@@ -1,4 +1,10 @@
-import React, { createContext, useCallback, useContext, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 type BackgroundImages = {
   title: string;
@@ -22,10 +28,15 @@ const backgroundImages = [
   { title: "Lofi Girl 3", image: "/lofigirl3.gif" },
 ];
 
+const storage = localStorage.getItem("bg-image");
+
 const SettingsProvider = ({ children }: { children: React.ReactNode }) => {
-  const [activeImage, setActiveImage] = useState(backgroundImages[1].image);
+  const [activeImage, setActiveImage] = useState(
+    storage ? storage : backgroundImages[1].image
+  );
   const updateImage = useCallback((image: string) => {
     setActiveImage(image);
+    localStorage.setItem("bg-image", image);
   }, []);
 
   const data = {
