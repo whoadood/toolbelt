@@ -1,6 +1,7 @@
 import { useSettings } from "../hooks/useSettings";
 import PomodorMenu from "./PomodorMenu";
 import SettingsHeading from "./SettingsHeading";
+import VolumeSlider from "./VolumeSlider";
 
 const heading = ["Pomodoro", "todo list", "spotify", "inspiration"];
 
@@ -56,6 +57,7 @@ export default function Settings({
           <SettingsHeading title="Pomodoro" />
           {/* MENU BODY */}
           <PomodorMenu />
+          <VolumeSlider />
         </div>
       </div>
     </div>

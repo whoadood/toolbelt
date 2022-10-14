@@ -3,6 +3,8 @@ import { Pomodoro } from "../types/global";
 import useTimer from "./useTimer";
 import { useTodos } from "./useTodos";
 import useOwen from "../hooks/useOwen";
+import { useSettings } from "./useSettings";
+import { useVolume } from "./useVolume";
 
 const initialPomodoro: Pomodoro = {
   pom: 25,
@@ -52,6 +54,7 @@ type REDUCER_ACTION_TYPE = {
 const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
   const { todos, todosDispatch } = useTodos();
   const { activeWow, randomWow, owen } = useOwen();
+  const { volume } = useVolume();
   const pomodoroReducer = (
     state = initialPomodoro,
     action: REDUCER_ACTION_TYPE
@@ -136,8 +139,8 @@ const PomodoroProvider = ({ children }: { children: React.ReactNode }) => {
       pomodoroDispatch({ type: "COMPLETE_ROUND" });
       let audio = new Audio(activeWow);
       audio.load();
-      // volume .01 - 1
-      // audio.volume =
+      // volume 0 - 1 range
+      audio.volume = volume * 0.01;
       audio.play();
       // if owen has data and alarm is in owen.data(d => d.audio)
       if (owen.data) {

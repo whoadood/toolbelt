@@ -10,6 +10,7 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { SettingsProvider } from "./hooks/useSettings";
 import { VisibilityProvider } from "./hooks/useWidget";
 import { NoteProvider } from "./hooks/useNotes";
+import { VolumeProvider } from "./hooks/useVolume";
 
 const queryClient = new QueryClient();
 
@@ -19,15 +20,17 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <TodoProvider>
         <InputTodoProvider>
           <SpotifyProvider>
-            <PomodoroProvider>
-              <NoteProvider>
-                <SettingsProvider>
-                  <VisibilityProvider>
-                    <App />
-                  </VisibilityProvider>
-                </SettingsProvider>
-              </NoteProvider>
-            </PomodoroProvider>
+            <VolumeProvider>
+              <PomodoroProvider>
+                <NoteProvider>
+                  <SettingsProvider>
+                    <VisibilityProvider>
+                      <App />
+                    </VisibilityProvider>
+                  </SettingsProvider>
+                </NoteProvider>
+              </PomodoroProvider>
+            </VolumeProvider>
           </SpotifyProvider>
         </InputTodoProvider>
       </TodoProvider>
