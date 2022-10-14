@@ -25,7 +25,6 @@ function App() {
   const todoRef = useRef<HTMLInputElement>();
   const { activeImage } = useSettings();
   const visibility = useWidget();
-  console.log("notes app", notes);
 
   return (
     <div className="relative flex min-h-screen justify-end bg-gradient-to-r from-teal-500 via-indigo-500 to-purple-500 px-2 font-bold text-gray-100">
