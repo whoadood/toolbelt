@@ -26,12 +26,15 @@ const months = [
   "Nov",
   "Dec",
 ];
+
 export default function Header({ handleToggle }: { handleToggle: () => void }) {
   const today = new Date();
   const visibility = useWidget();
   const { notesDispatch } = useNotes();
   const { toggle: visibilityMenuActive, handleToggle: visibiltyMenuToggle } =
     useToggle();
+  const todoStorage = localStorage.getItem("todo-vis");
+
   const icons = [
     {
       id: "notes",
@@ -63,7 +66,7 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
       id: "todo",
       icon: <QueueListIcon className="z-10 h-6" />,
       color: "purple-500",
-      active: visibility.todolistToggle.toggle,
+      active: todoStorage ? !!todoStorage : visibility.todolistToggle.toggle,
       toggler: visibility.todolistToggle.handleToggle,
     },
     {

@@ -22,6 +22,7 @@ type REDUCER_ACTION_TYPE =
       type: "RESET_NOTES";
       value: undefined;
     };
+const storage = localStorage.getItem("notes-list");
 
 const initialNotes: Note[] = [
   {
@@ -48,20 +49,29 @@ const NoteProvider = ({ children }: { children: React.ReactNode }) => {
   const noteReducer = (state = initialNotes, action: REDUCER_ACTION_TYPE) => {
     switch (action.type) {
       case "ADD_NOTE":
-        return [...state, action.value];
+        const newNotes = [...state, action.value];
+        localStorage.setItem("notes-list", JSON.stringify(newNotes));
+        return newNotes;
       case "EDIT_NOTE":
-        return state.map((td) =>
+        const editNotes = state.map((td) =>
           td.id === action.value.id ? action.value : td
         );
+        localStorage.setItem("notes-list", JSON.stringify(editNotes));
+        return editNotes;
       case "DELETE_NOTE":
-        return state.filter((td) => td.id !== action.value);
+        const deleteNotes = state.filter((td) => td.id !== action.value);
+        localStorage.setItem("notes-list", JSON.stringify(deleteNotes));
+        return deleteNotes;
       case "RESET_NOTES":
         return initialNotes;
       default:
         return initialNotes;
     }
   };
-  const [notes, notesDispatch] = useReducer(noteReducer, initialNotes);
+  const [notes, notesDispatch] = useReducer(
+    noteReducer,
+    storage ? JSON.parse(storage) : initialNotes
+  );
 
   const data = { notes, notesDispatch };
 
