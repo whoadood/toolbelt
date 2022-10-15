@@ -30,13 +30,24 @@ const VisibilityProvider = ({ children }: { children: React.ReactNode }) => {
   const spotifyStorage = localStorage.getItem("spotify-vis");
 
   // pass these init parameter from local storage does not work?
-  const inspirationToggle = useToggle();
-  const todolistToggle = useToggle();
-  const pomodoroToggle = useToggle();
-  const spotifyToggle = useToggle();
+  const inspirationToggle = useToggle(
+    inspirationStorage ? JSON.parse(inspirationStorage) : undefined
+  );
+  const todolistToggle = useToggle(
+    todoStorage ? JSON.parse(todoStorage) : undefined
+  );
+  const pomodoroToggle = useToggle(
+    pomodoroStorage ? JSON.parse(pomodoroStorage) : undefined
+  );
+  const spotifyToggle = useToggle(
+    spotifyStorage ? JSON.parse(spotifyStorage) : undefined
+  );
 
-  console.log("use widget todolist storage", !!todoStorage);
-  console.log("use widget todolist toggle", todolistToggle.toggle);
+  console.log(
+    "use widget todolist storage",
+    todoStorage && JSON.parse(todoStorage)
+  );
+
   const data = {
     inspirationToggle,
     todolistToggle,

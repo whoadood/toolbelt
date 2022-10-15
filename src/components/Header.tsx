@@ -54,7 +54,7 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
         visibility.pomodoroToggle.handleToggle();
         localStorage.setItem(
           "pomodoro-vis",
-          JSON.stringify(visibility.pomodoroToggle.toggle)
+          JSON.stringify(!visibility.pomodoroToggle.toggle)
         );
       },
     },
@@ -70,7 +70,7 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
         visibility.inspirationToggle.handleToggle();
         localStorage.setItem(
           "inspiration-vis",
-          JSON.stringify(visibility.inspirationToggle.toggle)
+          JSON.stringify(!visibility.inspirationToggle.toggle)
         );
       },
     },
@@ -83,7 +83,7 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
         visibility.todolistToggle.handleToggle();
         localStorage.setItem(
           "todo-vis",
-          JSON.stringify(visibility.todolistToggle.toggle)
+          JSON.stringify(!visibility.todolistToggle.toggle)
         );
       },
     },
@@ -99,7 +99,7 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
         visibility.spotifyToggle.handleToggle();
         localStorage.setItem(
           "spotify-vis",
-          JSON.stringify(visibility.spotifyToggle.toggle)
+          JSON.stringify(!visibility.spotifyToggle.toggle)
         );
       },
     },
