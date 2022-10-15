@@ -7,19 +7,21 @@ export default function Draggable({
   startY = 10,
   children,
   title,
+  id,
   border,
 }: {
   startX?: number;
-
+  id: string;
   startY?: number;
   children: React.ReactNode;
   title: React.ReactNode;
   border: string;
 }) {
+  const storage = localStorage.getItem(`${id}-pos`);
   const dragRef = useRef<LegacyRef<Rnd>>();
   const [position, setPosition] = useState({
-    x: startX,
-    y: startY,
+    x: storage ? JSON.parse(storage).x : startX,
+    y: storage ? JSON.parse(storage).y : startY,
     height: "",
     width: "",
   });
@@ -49,6 +51,7 @@ export default function Draggable({
       x,
       y,
     }));
+    localStorage.setItem(`${id}-pos`, JSON.stringify({ x, y }));
   };
 
   return (

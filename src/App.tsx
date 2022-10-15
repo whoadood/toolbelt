@@ -39,6 +39,7 @@ function App() {
         <>
           {notes.map((note) => (
             <Draggable
+              id={`${note.id}`}
               border="border-amber-500"
               startX={note.startX}
               startY={note.startY}
@@ -67,6 +68,7 @@ function App() {
         {/* ************ inspirational quotes ************ */}
         {window.innerWidth <= 810 && visibility.inspirationToggle.toggle && (
           <Draggable
+            id="inspiration"
             title={
               <div className="rounded-t bg-fuchsia-600 p-2">Inspiration</div>
             }
@@ -79,6 +81,7 @@ function App() {
         )}
         {window.innerWidth >= 810 && !visibility.inspirationToggle.toggle && (
           <Draggable
+            id="inspiration"
             title={
               <div className="rounded-t bg-fuchsia-600 p-2">Inspiration</div>
             }
@@ -92,6 +95,7 @@ function App() {
         {/* ************ pomodoro ************ */}
         {!visibility.pomodoroToggle.toggle && (
           <Draggable
+            id="pomodoro"
             startX={window.innerWidth < 810 ? 8 : undefined}
             startY={window.innerWidth < 810 ? 210 : undefined}
             title={
@@ -111,6 +115,7 @@ function App() {
         {/* ************ todo list ************ */}
         {!visibility.todolistToggle.toggle && (
           <Draggable
+            id="todo"
             startY={window.innerWidth < 810 ? 410 : 210}
             startX={window.innerWidth < 810 ? 8 : undefined}
             title={
@@ -130,6 +135,7 @@ function App() {
         {/* ************ spotify ************ */}
         {window.innerWidth < 800 && visibility.spotifyToggle.toggle && (
           <Draggable
+            id="spotify"
             startX={window.innerWidth < 810 ? 60 : 720}
             startY={window.innerWidth < 810 ? 10 : 200}
             border={"border-green-900"}
@@ -140,6 +146,7 @@ function App() {
         )}
         {window.innerWidth >= 800 && !visibility.spotifyToggle.toggle && (
           <Draggable
+            id="spotify"
             startX={
               window.innerWidth < 1030
                 ? window.innerWidth < 810
