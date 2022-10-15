@@ -29,16 +29,11 @@ const VisibilityProvider = ({ children }: { children: React.ReactNode }) => {
   const pomodoroStorage = localStorage.getItem("pomodoro-vis");
   const spotifyStorage = localStorage.getItem("spotify-vis");
 
-  const inspirationToggle = useToggle(
-    inspirationStorage ? !!inspirationStorage : undefined
-  );
-  const todolistToggle = useToggle(todoStorage ? !!todoStorage : undefined);
-  const pomodoroToggle = useToggle(
-    pomodoroStorage ? !!pomodoroStorage : undefined
-  );
-  const spotifyToggle = useToggle(
-    spotifyStorage ? !!spotifyStorage : undefined
-  );
+  // pass these init parameter from local storage does not work?
+  const inspirationToggle = useToggle();
+  const todolistToggle = useToggle();
+  const pomodoroToggle = useToggle();
+  const spotifyToggle = useToggle();
 
   console.log("use widget todolist storage", !!todoStorage);
   console.log("use widget todolist toggle", todolistToggle.toggle);
