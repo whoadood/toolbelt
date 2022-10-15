@@ -24,10 +24,24 @@ const VisibilityContext = createContext<
 >(undefined);
 
 const VisibilityProvider = ({ children }: { children: React.ReactNode }) => {
-  const inspirationToggle = useToggle();
-  const todolistToggle = useToggle();
-  const pomodoroToggle = useToggle();
-  const spotifyToggle = useToggle();
+  const inspirationStorage = localStorage.getItem("inspiration-vis");
+  const todoStorage = localStorage.getItem("todo-vis");
+  const pomodoroStorage = localStorage.getItem("pomodoro-vis");
+  const spotifyStorage = localStorage.getItem("spotify-vis");
+
+  const inspirationToggle = useToggle(
+    inspirationStorage ? !!inspirationStorage : undefined
+  );
+  const todolistToggle = useToggle(todoStorage ? !!todoStorage : undefined);
+  const pomodoroToggle = useToggle(
+    pomodoroStorage ? !!pomodoroStorage : undefined
+  );
+  const spotifyToggle = useToggle(
+    spotifyStorage ? !!spotifyStorage : undefined
+  );
+
+  console.log("use widget todolist storage", !!todoStorage);
+  console.log("use widget todolist toggle", todolistToggle.toggle);
   const data = {
     inspirationToggle,
     todolistToggle,

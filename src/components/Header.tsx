@@ -33,8 +33,8 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
   const { notesDispatch } = useNotes();
   const { toggle: visibilityMenuActive, handleToggle: visibiltyMenuToggle } =
     useToggle();
-  const todoStorage = localStorage.getItem("todo-vis");
 
+  console.log("header todo toggle", visibility.todolistToggle.toggle);
   const icons = [
     {
       id: "notes",
@@ -50,7 +50,13 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
       icon: <ClockIcon className="z-10 h-6" />,
       color: "indigo-500",
       active: visibility.pomodoroToggle.toggle,
-      toggler: visibility.pomodoroToggle.handleToggle,
+      toggler: () => {
+        visibility.pomodoroToggle.handleToggle();
+        localStorage.setItem(
+          "pomodoro-vis",
+          JSON.stringify(visibility.pomodoroToggle.toggle)
+        );
+      },
     },
     {
       id: "inspiration",
@@ -60,14 +66,26 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
         window.innerWidth < 810
           ? !visibility.inspirationToggle.toggle
           : visibility.inspirationToggle.toggle,
-      toggler: visibility.inspirationToggle.handleToggle,
+      toggler: () => {
+        visibility.inspirationToggle.handleToggle();
+        localStorage.setItem(
+          "inspiration-vis",
+          JSON.stringify(visibility.inspirationToggle.toggle)
+        );
+      },
     },
     {
       id: "todo",
       icon: <QueueListIcon className="z-10 h-6" />,
       color: "purple-500",
-      active: todoStorage ? !!todoStorage : visibility.todolistToggle.toggle,
-      toggler: visibility.todolistToggle.handleToggle,
+      active: visibility.todolistToggle.toggle,
+      toggler: () => {
+        visibility.todolistToggle.handleToggle();
+        localStorage.setItem(
+          "todo-vis",
+          JSON.stringify(visibility.todolistToggle.toggle)
+        );
+      },
     },
     {
       id: "spotify",
@@ -77,7 +95,13 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
         window.innerWidth < 810
           ? !visibility.spotifyToggle.toggle
           : visibility.spotifyToggle.toggle,
-      toggler: visibility.spotifyToggle.handleToggle,
+      toggler: () => {
+        visibility.spotifyToggle.handleToggle();
+        localStorage.setItem(
+          "spotify-vis",
+          JSON.stringify(visibility.spotifyToggle.toggle)
+        );
+      },
     },
   ];
   return (
