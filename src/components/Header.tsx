@@ -34,7 +34,6 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
   const { toggle: visibilityMenuActive, handleToggle: visibiltyMenuToggle } =
     useToggle();
 
-  console.log("header todo toggle", visibility.todolistToggle.toggle);
   const icons = [
     {
       id: "notes",

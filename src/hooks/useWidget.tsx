@@ -43,11 +43,6 @@ const VisibilityProvider = ({ children }: { children: React.ReactNode }) => {
     spotifyStorage ? JSON.parse(spotifyStorage) : undefined
   );
 
-  console.log(
-    "use widget todolist storage",
-    todoStorage && JSON.parse(todoStorage)
-  );
-
   const data = {
     inspirationToggle,
     todolistToggle,
