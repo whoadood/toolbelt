@@ -4,3 +4,4 @@
 ![pomodoro-toolbelt](https://user-images.githubusercontent.com/82413454/196057625-bf8c6d4b-f3bc-43cd-85ad-27e9b8c8b91b.png)
 ![inspiration-toolbelt](https://user-images.githubusercontent.com/82413454/196057572-100acc62-5f0f-4f10-aa8e-d5feb81123ed.png)
 ![spotify-toolbelt](https://user-images.githubusercontent.com/82413454/196057575-01af60b4-c683-40f1-9fec-5c1bc38fbee8.png)
+![settings-toolbelt](https://user-images.githubusercontent.com/82413454/196057643-a7db2392-c8b4-4c71-a34e-0a2ac1014119.png)
