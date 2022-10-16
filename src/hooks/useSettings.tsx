@@ -32,7 +32,7 @@ const storage = localStorage.getItem("bg-image");
 
 const SettingsProvider = ({ children }: { children: React.ReactNode }) => {
   const [activeImage, setActiveImage] = useState(
-    storage ? storage : backgroundImages[1].image
+    storage ? storage : backgroundImages[0].image
   );
   const updateImage = useCallback((image: string) => {
     setActiveImage(image);
