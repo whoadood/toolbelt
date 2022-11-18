@@ -60,6 +60,7 @@ export default function TodoTitle({
         </form>
       ) : (
         <button
+          aria-label="add new todo"
           className="cursor-pointer rounded-full p-2 transition-colors duration-150 hover:bg-slate-700/50"
           onClick={handleToggle}
           onTouchEnd={handleToggle}
