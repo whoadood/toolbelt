@@ -31,6 +31,7 @@ export default function TodoItem({ todo }: { todo: Todo }) {
             handleToggle={handleToggle}
           />
           <button
+            aria-label={`delete todo ${todo.text}`}
             type="button"
             className="ml-1 rounded-full p-2 text-gray-200/20 transition-colors duration-150 hover:bg-black/50  hover:text-white"
             onClick={() => {
@@ -59,6 +60,7 @@ export default function TodoItem({ todo }: { todo: Todo }) {
               {todo.currentRound}/{todo.totalRounds}
             </p>
             <button
+              aria-label={`edit todo ${todo.text}`}
               className="cursor-pointer rounded-full p-2 text-gray-200/20 transition-colors duration-150 hover:bg-black/50  hover:text-white"
               onClick={handleToggle}
               onTouchEnd={handleToggle}
