@@ -8,6 +8,7 @@ export default function NoteBody({ note }: { note: Note }) {
   return (
     <div className="min-h-[100px] min-w-[300px] p-2">
       <textarea
+        aria-label="edit note text"
         onBlur={(e) => {
           if (noteInput !== note.text) {
             notesDispatch({
