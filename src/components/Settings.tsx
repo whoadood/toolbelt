@@ -44,17 +44,18 @@ export default function Settings({
             {backgroundImages.map((image) => (
               <li key={image.image}>
                 <button
+                  className={`max-h-16 overflow-hidden bg-red-200 transition-transform duration-150 ease-in-out hover:scale-105 ${
+                    activeImage === image.image
+                      ? "border-2 border-rose-500"
+                      : ""
+                  }`}
                   aria-label="select background image"
                   onClick={() => updateImage(image.image)}
                 >
                   <img
-                    height="64px"
-                    width="64px"
-                    className={`transition-transform duration-150 ease-in-out hover:scale-105 ${
-                      activeImage === image.image
-                        ? "border-2 border-rose-500"
-                        : ""
-                    }`}
+                    className="h-16 w-16"
+                    height={128}
+                    width={128}
                     alt={image.title}
                     src={image.image}
                   />
