@@ -19,6 +19,7 @@ export default function Spotify() {
     <div>
       <div className="max-w-[400px]">
         <iframe
+          title="Spotify player embed"
           src={`https://open.spotify.com/embed/playlist/${spotifyActive}?utm_source=generator&theme=0`}
           width="100%"
           height={toggle ? "380" : "80px"}
