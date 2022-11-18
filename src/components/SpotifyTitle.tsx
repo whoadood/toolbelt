@@ -15,6 +15,7 @@ const SpotifyTitle = () => {
         },
       ].map((playlist) => (
         <button
+          aria-label={`set active playlist ${playlist.text}`}
           className={`group flex flex-col ${
             spotifyActive === playlist.url ? "text-white" : "text-gray-400"
           }`}
