@@ -52,6 +52,7 @@ export default function ControlledTodoInput({
     >
       <input
         autoComplete="off"
+        aria-label="Todo text"
         autoFocus
         value={input}
         name="text"
