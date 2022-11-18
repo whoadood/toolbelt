@@ -43,7 +43,11 @@ export default function Spotify() {
             placeholder={`Playlist ID: ${spotifyActive}`}
           />
         </form>
-        <button onClick={handleToggle} className="ml-2">
+        <button
+          aria-label="toggle show playlist"
+          onClick={handleToggle}
+          className="ml-2"
+        >
           <ChevronDownIcon
             className={`h-6 ${
               toggle ? "rotate-180" : ""
