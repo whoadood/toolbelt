@@ -29,7 +29,11 @@ export default function Settings({
         {/* MODAL HEADING */}
         <div className="flex justify-between rounded-t bg-rose-500">
           <p className="p-2">Settings</p>
-          <button className="p-2" onClick={handleToggle}>
+          <button
+            aria-label="close settings modal"
+            className="p-2"
+            onClick={handleToggle}
+          >
             X
           </button>
         </div>
@@ -39,7 +43,10 @@ export default function Settings({
           <ul className="flex items-center justify-start gap-2 py-2">
             {backgroundImages.map((image) => (
               <li key={image.image}>
-                <button onClick={() => updateImage(image.image)}>
+                <button
+                  aria-label="select background image"
+                  onClick={() => updateImage(image.image)}
+                >
                   <img
                     className={`h-16 w-16 transition-transform duration-150 ease-in-out hover:scale-105 ${
                       activeImage === image.image
