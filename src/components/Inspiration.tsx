@@ -13,6 +13,7 @@ export default function Inspiration() {
       </p>
       {activeQuote && (
         <button
+          aria-label="get new quote"
           className="mx-auto p-2 text-gray-200/50 hover:text-white"
           onClick={() => randomQuote(inspiration.data)}
         >
