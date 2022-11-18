@@ -48,7 +48,9 @@ export default function Settings({
                   onClick={() => updateImage(image.image)}
                 >
                   <img
-                    className={`h-16 w-16 transition-transform duration-150 ease-in-out hover:scale-105 ${
+                    height="64px"
+                    width="64px"
+                    className={`transition-transform duration-150 ease-in-out hover:scale-105 ${
                       activeImage === image.image
                         ? "border-2 border-rose-500"
                         : ""
