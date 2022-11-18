@@ -113,6 +113,7 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
       {/* ********** settings ********** */}
       <button
         onClick={handleToggle}
+        aria-label="show settings modal menu"
         className="flex items-center text-gray-300 drop-shadow-2xl transition-colors duration-150 ease-in-out hover:text-white"
       >
         <span>settings</span> <ChevronDownIcon className="h-4" />
@@ -121,6 +122,7 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
       <div className="group absolute top-0 bottom-0 -left-14 sm:left-0">
         <button
           onClick={visibiltyMenuToggle}
+          aria-label="show toggle widgets menu"
           className={`${
             visibilityMenuActive ? "rotate-90" : ""
           }  translate-x-16 px-2 text-white transition-transform duration-150 ease-in-out group-hover:rotate-90 sm:translate-x-0`}
@@ -140,6 +142,7 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
             >
               <button
                 onClick={icon.toggler}
+                aria-lable={`${icon.id} visibility toggle`}
                 className={`relative flex items-center justify-center p-2  `}
               >
                 {icon.icon}
