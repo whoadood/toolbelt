@@ -61,6 +61,7 @@ export default function PomodorMenu() {
       {/* ************ reset ************ */}
       <div>
         <button
+          aria-label="reset pomodoro settings"
           className="mt-6 flex items-center justify-center rounded p-2 text-sm transition-colors duration-150 ease-in-out hover:bg-black/50"
           onClick={() => {
             pomodoroDispatch({ type: "INITIAL_POMODORO" });
