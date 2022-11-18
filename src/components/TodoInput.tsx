@@ -19,6 +19,7 @@ export default function TodoInput({
     <>
       <input
         autoComplete="off"
+        aria-label="input new todo text"
         autoFocus
         name="text"
         className="w-52 rounded bg-black/50 py-1 px-2 font-normal outline-none hover:bg-black/75 focus:bg-black/75 focus:outline-white"
