@@ -47,6 +47,7 @@ function App() {
                 <div className="flex justify-between rounded-t bg-amber-500 p-2">
                   <p>Notes</p>
                   <button
+                    aria-label={`delete note ${note.text}`}
                     onClick={() =>
                       notesDispatch({ type: "DELETE_NOTE", value: note.id })
                     }
