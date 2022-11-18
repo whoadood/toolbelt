@@ -38,6 +38,7 @@ export default function Spotify() {
           onSubmit={submit}
         >
           <input
+            aria-label="playlist id search input"
             ref={searchRef as MutableRefObject<HTMLInputElement>}
             className="w-full rounded bg-black/50 py-1 px-2 text-sm font-normal outline-none focus:outline-white"
             placeholder={`Playlist ID: ${spotifyActive}`}
