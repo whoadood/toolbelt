@@ -142,7 +142,7 @@ export default function Header({ handleToggle }: { handleToggle: () => void }) {
             >
               <button
                 onClick={icon.toggler}
-                aria-lable={`${icon.id} visibility toggle`}
+                aria-label={`${icon.id} visibility toggle`}
                 className={`relative flex items-center justify-center p-2  `}
               >
                 {icon.icon}
