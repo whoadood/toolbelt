@@ -13,6 +13,7 @@ export default function IncDecInput({
     <div className="ml-1 flex h-10 flex-row  rounded bg-black/50">
       <button
         type="button"
+        aria-label="decrement round"
         data-action="decrement"
         className="z-10 h-full w-6 cursor-pointer rounded-l text-gray-400 hover:border-2 hover:border-white hover:bg-black/50 hover:text-white focus:border-2 focus:border-white"
         onClick={subRound}
@@ -32,6 +33,7 @@ export default function IncDecInput({
       <button
         data-action="increment"
         type="button"
+        aria-label="increment round"
         className="h-full w-6 cursor-pointer rounded-r text-gray-400 hover:border-2 hover:border-white hover:bg-black/50 hover:text-white focus:border-2 focus:border-white"
         onClick={addRound}
       >
