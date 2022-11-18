@@ -21,11 +21,21 @@ const SettingsContext = createContext<
 >(undefined);
 
 const backgroundImages = [
-  { title: "Computer Guy", image: "/computerguy.gif" },
-  { title: "Cyber Punk", image: "/cyberpunk.gif" },
-  { title: "Lofi Girl", image: "/lofigirl.gif" },
-  { title: "Lofi Girl 2", image: "/lofigirl2.gif" },
-  { title: "Lofi Girl 3", image: "/lofigirl3.gif" },
+  {
+    title: "Computer Guy",
+    image:
+      "https://user-images.githubusercontent.com/82413454/202794052-4dfa8c8d-6a8d-4c31-8568-78f8b070f4d6.gif",
+  },
+  {
+    title: "Cyber Punk",
+    image:
+      "https://user-images.githubusercontent.com/82413454/202794060-a385a229-bded-4f9f-a736-e0281b722bed.gif",
+  },
+  {
+    title: "Lofi Girl",
+    image:
+      "https://user-images.githubusercontent.com/82413454/202794068-9c460c4b-3190-4cd3-b835-94734b97a009.gif",
+  },
 ];
 
 const storage = localStorage.getItem("bg-image");
