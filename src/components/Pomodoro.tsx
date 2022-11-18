@@ -19,6 +19,7 @@ export default function Pomodoro() {
       {/* ************ footer ************ */}
       <div className="flex items-center justify-around">
         <button
+          aria-label="start pomodoro timer"
           disabled={pomodoro?.hasStarted && !pomodoro?.isPaused}
           className={`z-50 text-gray-400/50 transition-colors duration-150 ease-in-out hover:text-white disabled:text-gray-400/50`}
           // for mobile
@@ -38,6 +39,7 @@ export default function Pomodoro() {
           start
         </button>
         <button
+          aria-label="pause pomodoro timer"
           className="text-gray-400/50 transition-colors duration-150 ease-in-out hover:text-white"
           onClick={() => {
             pomodoroDispatch({ type: "PAUSE_TIMER" });
@@ -46,6 +48,7 @@ export default function Pomodoro() {
           pause
         </button>
         <button
+          aria-label="reset pomodoro timer"
           className="text-gray-400/50 transition-colors duration-150 ease-in-out hover:text-white"
           onClick={() => {
             pomodoroDispatch({ type: "RESET_ROUND" });
