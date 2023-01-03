@@ -4,7 +4,7 @@ import { Wow } from "../types/global";
 
 const fetchWow = async (): Promise<Wow[]> => {
   const res = await fetch(
-    "https://owen-wilson-wow-api.herokuapp.com/wows/random?results=5",
+    "https://owen-wilson-wow-api.onrender.com/wows/random?results=5",
     {
       method: "GET",
       headers: {
