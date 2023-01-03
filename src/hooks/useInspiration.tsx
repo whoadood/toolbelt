@@ -3,15 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import { Quote } from "../types/global";
 
 const fetchQuote = async (): Promise<Quote[]> => {
-  const res = await fetch(
-    "https://inspirational-quotes-api.herokuapp.com/quotes",
-    {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-      },
-    }
-  );
+  const res = await fetch("https://type.fit/api/quotes", {
+    method: "GET",
+    headers: {
+      "content-type": "application/json",
+    },
+  });
   if (!res.ok) {
     throw new Error("Network response was not ok");
   }

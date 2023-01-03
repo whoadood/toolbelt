@@ -17,10 +17,8 @@ export type Pomodoro = {
   activeTodo: string | undefined;
 };
 export type Quote = {
-  id: number;
-  quote: string;
-  source: string;
-  link: string;
+  text: string;
+  author: string;
 };
 export type Wow = {
   movie: string;

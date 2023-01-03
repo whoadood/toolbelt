@@ -6,10 +6,10 @@ export default function Inspiration() {
   return (
     <div className="wrap flex min-h-[150px] w-[300px] flex-col items-start justify-center gap-2 rounded-b px-4 py-2">
       <p className="font-[cursive] text-lg">
-        {activeQuote && `"${activeQuote.quote}"`}
+        {activeQuote && `"${activeQuote.text}"`}
       </p>
       <p className="text-gray-200/50">
-        {activeQuote && `-${activeQuote.source}`}
+        {activeQuote && `-${activeQuote.author}`}
       </p>
       {activeQuote && (
         <button
